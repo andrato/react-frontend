@@ -1,25 +1,20 @@
-import logo from './logo.svg';
+// Router = to make it similar to all pages 
+// Switch/Routes = a route at a time; different pages or routes that we want to have 
+
 import './App.css';
-import DietComponent from './components/DietComponent';
+import NavbarComponent from './components/NavbarComponent';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <DietComponent />
+      <Router>
+        <NavbarComponent />
+        <Routes>
+          <Route path="/" exact component={Home}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
