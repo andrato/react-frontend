@@ -1,24 +1,19 @@
-import React from 'react';
-import axios from 'axios';
-import DietService from '../services/DietService'
+import React from 'react'
+import { useParams } from 'react-router-dom';
+import DietService from '../services/DietService';
 import DietItem from './DietItem';
-import "../styles/DietList.css";
 
-const DietListComponent = (props) => {
+export default function DietListTypeComponent(props) {
 
     const [diets, setDiets] = React.useState([]);
 
-    // JUST FOR TESTING
-    const getData = () => {
-        axios.get('http://localhost:8080/diets').then(res => {
-          console.table(res.data)
-        })
-    }
-
+    let { id } = useParams(); 
+    
     React.useEffect(() => { 
-        DietService.getDiets().then((response) => {
+        DietService.getDietsByType(id).then((response) => {
             setDiets(response.data)
         })
+        console.log("called " + id);
     }, []);
 
     // display diet list
@@ -36,5 +31,3 @@ const DietListComponent = (props) => {
         </div>
     )
 }
-
-export default DietListComponent;
