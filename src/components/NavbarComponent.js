@@ -1,11 +1,15 @@
 import React from 'react'
-import Logo from '../assets/logo3.png';
-import {Link, NavLink} from 'react-router-dom';
-import "../styles/NavbarStyle.css"
 import ReorderIcon from '@mui/icons-material/Reorder';
-import { useNavigate } from "react-router-dom";
 import TypeService from '../services/TypeService';
+
+import {Link, NavLink} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {FiUser, FiShoppingCart} from "react-icons/fi";
+
+import Logo from '../assets/logo3.png';
+
+import "../styles/NavbarStyle.css";
+
 
 function NavbarComponent(props) {
 
@@ -33,7 +37,7 @@ function NavbarComponent(props) {
                 { 
                     diets.map(
                         (diet, key) => {
-                            return <Link to={`/dietType/${diet.id}`}> {diet.name} </Link>
+                            return <NavLink to={`/dietType/${diet.id}`}> {diet.name} </NavLink>
                         }
                     )
                 }
@@ -42,10 +46,10 @@ function NavbarComponent(props) {
                 </button>
             </div>
             <div className="endNav" id="beforeIcons">
-                <FiShoppingCart />
+                <Link to={'/cart'}> <FiShoppingCart /> </Link>
             </div>  
             <div className="endNav" id="afterIcons">
-                <FiUser />
+                <Link to={'/user'}> <FiUser /> </Link>
             </div>  
         </div>
     )

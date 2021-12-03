@@ -34,19 +34,39 @@
   cursor: pointer;
 }
 
-.menuItem div {
+.menuItem div div{
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   width: 100%;
-  height: 200px;
+  height: 240px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-}
+  background-size: cover;}
 
-.menuItem h1,
+/* .menuItem h3,
 .menuItem p {
   margin-left: 20px;
+} */
+
+.menuItem .item-end {
+    display: block;
+    height: 40px;
+}
+
+.menuItem .item-end div{
+    display: inline-block;
+}
+
+#price {
+    width: 60px;
+    float:left;
+    padding-left: 17px;
+}
+
+#buton {
+    width: 40px;
+    float:right;
+    padding-right: 30px;
 }
 
 @media only screen and (max-width: 1300px) {

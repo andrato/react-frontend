@@ -17,7 +17,7 @@
 }
 
 .navbar .leftSide img {
-  height: 70px;
+  height: 60px;
 }
 
 .navbar .rightSide {
@@ -34,17 +34,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color:white;
   font-size: 25px;
 }
 
 .navbar .endNav svg {
-  margin: 20px;
+  margin: 10px;
 }
 
 #beforeIcons {
-  padding-left:30px;
-  padding-right: 10px;
+  padding-left:10px;
 }
 
 #afterIcons {
@@ -55,6 +53,10 @@
   color: white;
   text-decoration: none;
   margin: 20px;
+}
+
+.navbar .endNav a {
+  color: #5ce0e6;
 }
 
 .navbar .rightSide button {
@@ -87,6 +89,18 @@
 .navbar #close .hiddenLinks {
   display: none;
 }
+
+.navbar .rightSide a:hover{
+  color: #5ce0e6;
+}
+
+.navbar .rightSide a:hover{
+  color: #5ce0e6;
+}
+
+/* .navbar .rightSide .is-active{
+  color: red;
+} */
 
 .navbar #open a {
   width: 70px;
