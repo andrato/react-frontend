@@ -1,9 +1,10 @@
 import React from 'react'
 // import image into to application
 import Logo from '../assets/logo3.png';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import "../styles/NavbarStyle.css"
-import Category from '../services/CategoryService.js'
+import ReorderIcon from '@mui/icons-material/Reorder';
+// import Category from '../services/CategoryService.js'
 
 function NavbarComponent() {
     return (
@@ -12,8 +13,11 @@ function NavbarComponent() {
                 <img src={Logo}></img>
             </div>
             <div className="rightSide">
-                <Link to="/"> Vegan </Link>
-                <Link to="/"> Low Fat </Link>
+                <NavLink to="/vegan"> Vegan </NavLink>
+                <NavLink to="/lowfat"> Low Fat </NavLink>
+                <button>
+                    <ReorderIcon />
+                </button>
             </div>      
         </div>
     )

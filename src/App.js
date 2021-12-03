@@ -4,7 +4,8 @@
 import './App.css';
 import NavbarComponent from './components/NavbarComponent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import Diets from './pages/Diets';
+import Diet from './pages/Diet';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Router>
         <NavbarComponent />
         <Routes>
-          <Route path="/" exact component={Home}></Route>
+          <Route path='/' element={<Diets/>} />
+          <Route path='/diet/:id' element={<Diet key={1} />} />
         </Routes>
       </Router>
     </div>

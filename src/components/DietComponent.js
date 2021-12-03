@@ -1,49 +1,21 @@
-import React from 'react';
+import { Navigation } from '@mui/icons-material'
+import React from 'react'
 import DietService from '../services/DietService'
+import {Text} from 'react'
+import { useParams } from 'react-router-dom';
 
-class DietComponent extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            diets:[]
-        }
-    }
+function DietComponent (props){
 
-    // to call a rest api
-    // get the data for the users
-    componentDidMount() {
-        DietService.getDiets().then((response) => {
-            this.setState({ diets: response.data })
-        })
-    }
+    let { id } = useParams(); 
 
-    // display list app users on a page
-    render () {
-        return (
-            <div>
-              <h1 className="text-center"> Diets list </h1> 
-              <table className="table table-striped">
-                  <thead>
-                      <tr>
-                          <td> Diet ID </td>
-                          <td> Diet Name </td>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {
-                          this.state.diets.map(
-                              diet => 
-                              <tr key = {diet.id}>
-                                  <td> {diet.id} </td>
-                                  <td> {diet.name} </td>
-                              </tr>
-                          )
-                      }
-                  </tbody>
-              </table>  
-            </div>
-        )
-    }
+    // display diet list
+    console.log(props);
+    return (
+        <div >
+            <p> {id} </p>
+        </div>
+    )
+    
 }
 
 export default DietComponent;
