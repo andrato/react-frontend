@@ -1,0 +1,139 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+.App {
+    height: 100%;
+    width: 100%;
+}
+
+.background {
+    /* background-color: cadetblue; */
+    height: 100%;
+    width: 100%;
+    background: url("../assets/background34.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login {
+    display: block;
+    width: 450px;
+    height: 400px;
+    background-color:white;
+    align-content: center;
+    margin: 0 auto;
+    border-radius: 25px;
+    margin-top: 70px;
+    border-width: 1px;
+    border-color: grey;
+    border-style: solid;
+    opacity: 1;
+}
+
+.content {
+    display: block;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.content h3 {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 25px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.info {
+    width: 100%;
+    margin: 0 auto;
+}
+
+input{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    height: 40px;
+    margin-bottom: 30px;
+    /* background-color: #FFCFC6; */
+    border-width: 1px;
+}
+
+.loginButton {
+    display: block;
+    height: 40px;
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color:indianred;
+    color: white;
+    border-width: 2px;
+    border-top-color:lightpink;
+    border-left-color: lightpink;
+    border-bottom-color:darkslategrey;
+    border-right-color: darkslategrey;
+}
+
+.password {
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+}
+
+
+
+.register {
+    display: block;
+    width: 450px;
+    height: 550px;
+    background-color:white;
+    align-content: center;
+    margin: 0 auto;
+    border-radius: 25px;
+    margin-top: 70px;
+    border-width: 1px;
+    border-color: grey;
+    border-style: solid;
+    opacity: 1;
+}
+
+.register-info {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.register-info input {
+    height: 30px;
+}
+
+.register-info-div select {
+    display: block;
+    height: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.register-info-div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.div-inline {
+    width: 40%;
+}

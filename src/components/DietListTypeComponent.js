@@ -13,7 +13,7 @@ export default function DietListTypeComponent(props) {
         DietService.getDietsByType(id).then((response) => {
             setDiets(response.data)
         })
-        console.log("called " + id);
+        //console.log("called " + id);
     }, []);
 
     // display diet list
