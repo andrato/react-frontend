@@ -8,6 +8,10 @@ class LocationService {
     getCitiesByCountry(id){
         return axios.get(`http://localhost:8080/cities/country?id=${id}`);
     }
+
+    getCities(){
+        return axios.get(`http://localhost:8080/cities`);
+    }
 }
 
 // export object of this class

@@ -100,7 +100,7 @@ input{
 .register {
     display: block;
     width: 450px;
-    height: 550px;
+    height: 570px;
     background-color:white;
     align-content: center;
     margin: 0 auto;
@@ -136,4 +136,36 @@ input{
 
 .div-inline {
     width: 40%;
+}
+
+.react-calendar.hide {
+    display: none;
+}
+.react-calendar {
+    position: absolute;
+    display: block;
+    width: 350px;
+    background-color: white;
+}
+
+.calendar input {
+    height: 30px;
+    margin-bottom: 0px;
+}
+
+.calendar {
+    margin-bottom: 25px;
+}
+
+.react-calendar button {
+    margin: 3px;
+}
+
+.react-calendar__navigation {
+    width: 100%;
+    display: flex;
+}
+
+.react-calendar__month-view {
+    font-size: 12px;
 }
