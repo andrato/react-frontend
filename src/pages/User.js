@@ -7,7 +7,6 @@ function User() {
             <h1 id="ceva">cevaaaaaaaa</h1>
         </div>
     )
-    
 }
 
 export default User;

@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 class UserService {
-    getUser(id){
-        return axios.get(`http://localhost:8080/user/${id}`);
+    getUserById(id){
+        return axios.get(`http://localhost:8080/users/${id}`);
+    }
+
+    login() {
+        return axios.get(`http://localhost:8080/login`);
     }
 }
 

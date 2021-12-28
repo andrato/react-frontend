@@ -6,6 +6,8 @@
   flex-direction: row;
   position: sticky;
   top: 0;
+  border-bottom-color: white;
+  border-bottom-style: solid;
 }
 
 .navbar .leftSide {
@@ -94,7 +96,7 @@
   color: #5ce0e6;
 }
 
-.navbar .rightSide a:hover{
+.navbar .rightSide a:active{
   color: #5ce0e6;
 }
 

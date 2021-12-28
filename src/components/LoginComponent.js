@@ -11,21 +11,26 @@ function LoginComponent () {
     //     navigate(`/register`);
     // }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        const { username, password } = e.target.elements;
+    }
+
     return (
         <div className="background">
             <div className="login">
                 <div className="content">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <h3>Sign In</h3>
 
                         <div className="info">
                             {/* <label>Email address</label> */}
-                            <input type="email" placeholder="Enter email" />
+                            <input id="username" type="email" placeholder="Enter email" />
                         </div>
 
                         <div className="info">
                             {/* <label>Password</label> */}
-                            <input type="password" placeholder="Enter password" />
+                            <input id="password" type="password" placeholder="Enter password" />
                         </div>
 
                         {/* <div className="info">

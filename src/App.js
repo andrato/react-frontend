@@ -10,7 +10,9 @@ import DietListTypeComponent from './components/DietListTypeComponent';
 import User from './pages/User';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
-
+import UserComponent from './components/UserComponent';
+import UserDietsComponent from './components/UserDietsComponent';
+import UserWeightHappinessComponent from './components/UserWeightHappinessComponent';
 
 function App() {
   return (
@@ -22,8 +24,11 @@ function App() {
           <Route path='/diet/:id' element={<Diet />} />
           <Route path='/dietType/:id' element={<DietListTypeComponent/>} />
           {/* <Route path='/user/:id' element={<Diet />} /> */}
-          <Route path='/user' element={<LoginComponent />} />
+          <Route path='/login' element={<LoginComponent />} />
           <Route path='/register' element={<RegisterComponent />} />
+          <Route path='/users/:id' element={<UserComponent />} />
+          <Route path='/users/:id/diets' element={<UserDietsComponent />} />
+          <Route path='/users/:id/updates' element={<UserWeightHappinessComponent />} />
         </Routes>
       </Router>
     </div>

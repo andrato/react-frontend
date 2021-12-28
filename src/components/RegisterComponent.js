@@ -18,9 +18,9 @@ function RegisterComponent () {
         })
     }, []);
 
-    // const handleRoute = (msg) => { 
-    //     navigate('/response', msg);
-    // }
+    const handleRoute = (msg) => { 
+        navigate('/response', msg);
+    }
 
     const handleChange = value => {
         console.log("aici");
@@ -44,8 +44,8 @@ function RegisterComponent () {
                          , "birth_date": birth_date};
         console.log(userInfo);
         RegisterService.sendUserInfo(userInfo)
-            .then( (response) => { navigate('/user');  /*navigate('/login');*/})
-            .catch( (error) => { console.log(error);});
+            .then( (response) => { navigate('/login');  /*navigate('/login');*/})
+            .catch( (error) => { alert("Could not register! Please try again!"); });
     }
 
     return (
@@ -83,18 +83,6 @@ function RegisterComponent () {
                                 </select>
                             </div>
 
-                            {/* <div className="div-inline">
-                                <select value={value} >
-                                { 
-                                    countries.map(
-                                        (country, key) => {
-                                            return <option value={`${country.id}`}> {country.name}</option>
-                                        }
-                                    )
-                                }
-                                </select>
-                            </div> */}
-
                             <div className="div-inline">
                                 <select name="city" id="city"  >
                                 { 
@@ -107,16 +95,6 @@ function RegisterComponent () {
                                 </select>
                             </div>
                         </div>
-
-                        {/* <div className="info">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                            </div>
-                        </div> */}
-                        {/* <div className="register-info">
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                        </div> */}
 
                         <div className="calendar">
                             <input

@@ -45,11 +45,11 @@ function NavbarComponent(props) {
                     <ReorderIcon />
                 </button>
             </div>
-            <div className="endNav" id="beforeIcons">
+            {/* <div className="endNav" id="beforeIcons">
                 <Link to={'/cart'}> <FiShoppingCart /> </Link>
-            </div>  
+            </div>   */}
             <div className="endNav" id="afterIcons">
-                <Link to={'/user'}> <FiUser /> </Link>
+                <Link to={'/login'}> <FiUser /> </Link>
             </div>  
         </div>
     )
