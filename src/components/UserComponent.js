@@ -2,46 +2,52 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import UserService from '../services/UserService';
 import {NavLink} from 'react-router-dom';
-import { Slider } from '@mui/material';
-
 import '../styles/User.css';
-import { ContentCutOutlined } from '@mui/icons-material';
+import HappinessService from '../services/HappinessService';
+import WeightService from '../services/WeightService';
 
 function UserComponent(props) {
 
     let { id } = useParams(); 
 
     const [user, setUser] = React.useState('');
-    
+    const [weight, setWeight] = React.useState([]);
+    const [happiness, setHappiness] = React.useState([]);
+
     React.useEffect(() => { 
         UserService.getUserById(id).then((response) => {
             setUser(response.data);
         })
     }, '');
 
-    // if(user.gender === "F") {
-    //     user.gender = "Female";
-    // } else {
-    //     user.gender = "Male";
-    // }
+    React.useEffect(() => { 
+        WeightService.getWeight(id).then((response) => {
+            setWeight(response.data);
+            console.log(response);
+        })
+    }, []);
 
-    function handleChange (e) {
-        console.log(e.target.value);
-
-
-    }
+    React.useEffect(() => { 
+        HappinessService.getHappiness(id).then((response) => {
+            setHappiness(response.data);
+            console.log(response.data);
+        })
+    }, []);
 
     return (
-        <div className="all, all_same">
+        <div className="all">
             <div className="one">
                 <div className="nav">
                     <NavLink to={`/users/${id}`} className="active"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
                 </div>
+                <div className="logout">
+                    <NavLink to={`/`} className="inactive"> Log out </NavLink>
+                </div>
             </div>
 
-            <div className="all_same, two">
+            <div className="two" id="user-component">
                 {
                     <div>
                         <h2> Basic Info </h2>
@@ -55,6 +61,49 @@ function UserComponent(props) {
                 }
                 <div className="userButton">
                     <button className="loginButton">UPDATE</button>
+                </div>
+
+                <div className="modifica">
+                    <h2>Weight History</h2>
+                    <table>
+                        <tr>
+                            <th>Kg</th>
+                            <th>Date</th>
+                        </tr>
+                        {
+                            weight.map(
+                                (ceva, key) => {
+                                    return (
+                                        <tr>
+                                            <td>{ceva.value}</td>
+                                            <td>{ceva.date}</td>
+                                        </tr>
+                                    )
+                                })
+                        }
+                    </table>
+                    
+                </div>
+
+                <div className="modifica" id="happiness">
+                    <h2>Happiness History</h2>
+                    <table>
+                        <tr>
+                            <th>Happiness level</th>
+                            <th>Date</th>
+                        </tr>
+                        {
+                            happiness.map(
+                                (happy, key) => {
+                                    return (
+                                        <tr>
+                                            <td>{happy.value}</td>
+                                            <td>{happy.date}</td>
+                                        </tr>
+                                    )
+                                })
+                        }
+                    </table>
                 </div>
             </div>
         </div>

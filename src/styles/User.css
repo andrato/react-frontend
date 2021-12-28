@@ -11,7 +11,8 @@
     height: 100%;
     /* background-color: #003d4d;  */
      /* #336699;  #00b3b3 #0086b3 */
-     background-color: #121619;
+    background-color: #121619;
+    position: fixed;
 }
 
 .nav {
@@ -46,6 +47,7 @@
 .two {
     padding-top: 30px;
     padding-left: 70px;
+    margin-left: 200px;
 }
 
 .two pre {
@@ -70,4 +72,59 @@
 
 .userButton {
     margin-top: 40px;
+    display: block;
+    width: 400px;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+/* #user-component {
+    width: 500px;
+} */
+.modifica {
+    display: block;
+    width: 400px;
+    padding-top: 20px;
+}
+
+#happiness {
+    display: block;
+    padding-bottom: 60px;
+}
+
+#weight-and-happiness {
+    display: block;
+    width: 400px;
+}
+
+.logout {
+    height: 100%;
+    display: flex;
+}
+.logout a{
+    align-self: flex-end;
+    color: white;
+    margin-left: 60px;
+    margin-top:20px;
+    text-decoration: none;
+    float: bottom;
+    padding-bottom:290px;
+}
+.logout a:hover{
+    color:#5ce0e6;
 }

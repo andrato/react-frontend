@@ -23,7 +23,6 @@ function RegisterComponent () {
     }
 
     const handleChange = value => {
-        console.log("aici");
         setDate(value);
         setShowCalendar(false);
     };
