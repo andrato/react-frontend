@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 import { Slider } from '@mui/material';
 import moment from 'moment';
 import { useNavigate } from 'react-router';
-
 import '../styles/User.css';
 import HappinessService from '../services/HappinessService';
 import WeightService from '../services/WeightService';
@@ -59,7 +58,9 @@ function UserWeightHappinessComponent(props) {
 
         console.log(ok);
         if(ok == true) {
-            navigate(`/users/${id}`); 
+            // setTimeout(navigate(`/users/${id}`), 1000); 
+            // wait so that 
+            setTimeout(() => {  navigate(`/users/${id}`); }, 1000);
         }
         else {
             alert("No valid changes made! Cannot submit");

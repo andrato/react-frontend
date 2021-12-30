@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 import '../styles/User.css';
 import HappinessService from '../services/HappinessService';
 import WeightService from '../services/WeightService';
+import { useNavigate } from 'react-router';
 
 function UserComponent(props) {
 
@@ -13,6 +14,7 @@ function UserComponent(props) {
     const [user, setUser] = React.useState('');
     const [weight, setWeight] = React.useState([]);
     const [happiness, setHappiness] = React.useState([]);
+    const navigate = useNavigate();
 
     React.useEffect(() => { 
         UserService.getUserById(id).then((response) => {
@@ -33,6 +35,10 @@ function UserComponent(props) {
             console.log(response.data);
         })
     }, []);
+
+    function handleUpdate() {
+        navigate(`/users/${id}/form`);
+    }
 
     return (
         <div className="all">
@@ -60,7 +66,7 @@ function UserComponent(props) {
                     </div>
                 }
                 <div className="userButton">
-                    <button className="loginButton">UPDATE</button>
+                    <button className="loginButton" onClick={handleUpdate}>UPDATE</button>
                 </div>
 
                 <div className="modifica">

@@ -7,12 +7,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Diets from './pages/Diets';
 import Diet from './pages/Diet';
 import DietListTypeComponent from './components/DietListTypeComponent';
-import User from './pages/User';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
 import UserComponent from './components/UserComponent';
 import UserDietsComponent from './components/UserDietsComponent';
 import UserWeightHappinessComponent from './components/UserWeightHappinessComponent';
+import UserFormComponent from './components/UserFormComponent';
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
           <Route path='/users/:id' element={<UserComponent />} />
           <Route path='/users/:id/diets' element={<UserDietsComponent />} />
           <Route path='/users/:id/updates' element={<UserWeightHappinessComponent />} />
+          <Route path='/users/:id/form' element={<UserFormComponent />} />
         </Routes>
       </Router>
     </div>

@@ -18,6 +18,7 @@ function NavbarComponent(props) {
     const handleRoute = () =>{ 
         navigate("/");
     }
+
     const [diets, setDiets] = React.useState([]);
 
     React.useEffect(() => { 

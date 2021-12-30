@@ -8,7 +8,7 @@ export default function DietListTypeComponent(props) {
     const [diets, setDiets] = React.useState([]);
 
     let { id } = useParams(); 
-    
+
     React.useEffect(() => { 
         DietService.getDietsByType(id).then((response) => {
             setDiets(response.data)

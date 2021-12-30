@@ -1,7 +1,4 @@
 import axios from 'axios';
-
-const DIETS_REST_API_URL = 'http://localhost:8080/diets/'
-
 class DietService {
     getDiets(){
         return axios.get('http://localhost:8080/diets/');

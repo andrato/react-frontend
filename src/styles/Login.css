@@ -169,3 +169,14 @@ input{
 .react-calendar__month-view {
     font-size: 12px;
 }
+
+#altceva {
+    display: block;
+    width: 500px;
+    padding-left: 250px;
+    padding-top: 50px;
+}
+
+#altceva input{
+    height: 30px;
+}
