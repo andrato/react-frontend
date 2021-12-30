@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import '../styles/DietDetails.css';
 import Image from "../assets/1.jpeg";
 import FoodService from '../services/FoodService';
+import BillingService from '../services/BillingService';
 
 function DietComponent (props){
 
@@ -28,6 +29,29 @@ function DietComponent (props){
         })
     },[]);
 
+    function handleBuy() { 
+        console.log(diet.id);
+
+        const obj = {
+            "userDto":{
+                "id": 1
+            },
+            "dietDto": {
+                "id": diet.id
+            },
+            "paymentDto": {
+                "amount": diet.price
+            }
+        }
+
+        // to do: if order succedden, then the page should be reloaded
+        // and the user should be able to access the foods
+        // until user does not buy the diet, the foods will be grayed out
+        BillingService.buyDiet(obj) 
+        .then( (response) => { alert('Order succedded!');  })
+        .catch( (error) => { alert("An error occured! Please try again later!"); console.log(error); });
+    }
+
     //console.log(diet);
     console.log(foods)
     return (
@@ -41,7 +65,7 @@ function DietComponent (props){
                                 <pre>Maximum calories: <span>{diet.maximumCalories}</span></pre>
                                 <pre>Price: <span>{diet.price}</span></pre>
                                 <pre>Description: <span>...</span></pre>
-                                <div id="div-btn">
+                                <div id="div-btn" onClick={handleBuy}>
                                     <button>Buy</button>
                                 </div>
                         </div>
