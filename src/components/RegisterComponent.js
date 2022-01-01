@@ -45,9 +45,7 @@ function RegisterComponent () {
         // console.log(userInfo);
         RegisterService.sendUserInfo(userInfo)
             .then( (response) => { alert("a mers"); /*navigate('/login');*/  /*navigate('/login');*/})
-            .catch( (error) => { 
-                let err = new Error(error)
-                console.log(err.toString());  }); //"Could not register! Please try again!",
+            .catch( (error) => { alert(error) }); //"Could not register! Please try again!",
     }
 
     return (
