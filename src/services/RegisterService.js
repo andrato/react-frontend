@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 class RegisterService {
     sendUserInfo(userInfo){
-        return axios.post(`http://localhost:8080/registration`, userInfo);
+        console.log(userInfo); 
+        return axios.post('http://localhost:8080/registration/', userInfo);
     }
 }
 

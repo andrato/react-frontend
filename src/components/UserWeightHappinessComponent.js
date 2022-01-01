@@ -32,13 +32,17 @@ function UserWeightHappinessComponent(props) {
         const date_now = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
     
         const happinessObj = {
-            value: happiness,
-            userId: Number(id)
+            happiness_level: happiness,
+            userDto: {
+                id: Number(id)
+            } 
         }
 
         const weightObj = {
-            value: Number(weight.value),
-            userId: Number(id)
+            weight_number: Number(weight.value),
+            userDto: {
+                id: Number(id)
+            } 
         }
         
         let ok = false;
@@ -46,7 +50,7 @@ function UserWeightHappinessComponent(props) {
             ok = true;
             HappinessService.setHappiness(happinessObj)
                 .then( (response) => { console.log('E bine pe happiness'); })
-                .catch( (error) => { alert("An error occured! Please try again later!"); });
+                .catch( (error) => { alert(error); }); //"An error occured! Please try again later!"
         }
 
         if(Number(weight.value) < 400 && Number(weight.value) >= 30){

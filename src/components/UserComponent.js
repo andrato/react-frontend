@@ -81,8 +81,8 @@ function UserComponent(props) {
                                 (ceva, key) => {
                                     return (
                                         <tr>
-                                            <td>{ceva.value}</td>
-                                            <td>{ceva.date}</td>
+                                            <td>{ceva.weight_number}</td>
+                                            <td>{ceva.weight_date}</td>
                                         </tr>
                                     )
                                 })
@@ -103,8 +103,8 @@ function UserComponent(props) {
                                 (happy, key) => {
                                     return (
                                         <tr>
-                                            <td>{happy.value}</td>
-                                            <td>{happy.date}</td>
+                                            <td>{happy.happiness_level}</td>
+                                            <td>{happy.happiness_date}</td>
                                         </tr>
                                     )
                                 })

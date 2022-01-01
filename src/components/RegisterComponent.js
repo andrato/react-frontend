@@ -5,6 +5,7 @@ import RegisterService from '../services/RegisterService';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { useNavigate } from 'react-router';
+import { ContactsOutlined } from '@mui/icons-material';
 
 function RegisterComponent () {
     const [cities, setCities] = React.useState([]);
@@ -39,12 +40,14 @@ function RegisterComponent () {
                          , "username": username.value
                          , "password": password.value 
                          , "gender": (gender.value == 'female') ? 'F' : 'M'
-                         , "city": city.value
-                         , "birth_date": birth_date};
-        console.log(userInfo);
+                         , "city": Number(city.value)
+                         , "birth_date": birth_date.toString()};
+        // console.log(userInfo);
         RegisterService.sendUserInfo(userInfo)
-            .then( (response) => { navigate('/login');  /*navigate('/login');*/})
-            .catch( (error) => { alert("Could not register! Please try again!"); });
+            .then( (response) => { alert("a mers"); /*navigate('/login');*/  /*navigate('/login');*/})
+            .catch( (error) => { 
+                let err = new Error(error)
+                console.log(err.toString());  }); //"Could not register! Please try again!",
     }
 
     return (
