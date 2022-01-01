@@ -6,12 +6,31 @@ import BillingService from '../services/BillingService';
 
 export default function DietItem({id, image, name, price}) {
 
-    image = Image;
+    const [diets, setDiets] = React.useState([]);
     const navigate = useNavigate();
+    image = Image;
   
     const handleRoute = () => { 
         navigate(`/diet/${id}`);
     }
+
+    React.useEffect(() => { 
+        // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
+        BillingService.getDiets(1).then((response) => {
+            setDiets(response.data);
+        })
+        .catch((error) => {alert(error)});
+    }, []);
+
+    // check if receipe is already bought by user
+    function isDietBought(){
+        let obj = diets.find(diet => diet.dietDto.id === id);
+        // console.log(obj);
+        return obj;
+    }
+
+    console.log(diets);
+    isDietBought();
 
     function handleBuy() { 
         console.log(id);

@@ -14,6 +14,7 @@ function DietComponent (props){
 
     const [diet, setDiet] = React.useState('');
     const [foods, setFoods] = React.useState([]);
+    const [diets, setDiets] = React.useState([]);
 
     React.useEffect(() => { 
         DietService.getDiet(id).then((response) => {
@@ -29,8 +30,26 @@ function DietComponent (props){
         })
     },[]);
 
+    React.useEffect(() => { 
+        // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
+        BillingService.getDiets(1).then((response) => {
+            setDiets(response.data);
+        })
+        // .catch((error) => {alert(error)});
+    }, []);
+
+    // check if receipe is already bought by user
+    function isDietBought(){
+        let obj = diets.find(diet => diet.dietDto.id === id);
+        // console.log(obj);
+        return obj;
+    }
+
+    console.log(diets);
+    isDietBought();
+
     function handleBuy() { 
-        console.log(diet.id);
+        //console.log(diet.id);
 
         const obj = {
             "userDto":{
