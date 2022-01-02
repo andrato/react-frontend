@@ -8,8 +8,8 @@ class PaymentService {
 
     /* the payments details which contain the diets bought by a specific user */
     getDiets(id){
-        console.log("find all");
-        return axios.get(`localhost:8086/payments/user?id=${id}`);
+        id=13;
+        return axios.get(`localhost:8080/payments/user?id=${id}`);
     }
 }
 
