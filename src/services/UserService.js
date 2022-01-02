@@ -8,6 +8,10 @@ class UserService {
     login() {
         return axios.get(`http://localhost:8080/login`);
     }
+
+    update(id, obj){
+        return axios.put(`http://localhost:8080/users/${id}`, obj);
+    }
 }
 
 // export object of this class

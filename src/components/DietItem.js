@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import Image from "../assets/1.jpeg";
 import PaymentService from '../services/PaymentService';
 import FoodService from '../services/FoodService';
+import { SignalCellularNoSimOutlined } from '@mui/icons-material';
 
 export default function DietItem({id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
     const [foods, setFoods] = React.useState([]);
+    const [showButton, setShowButton] = React.useState(true);
     
     const navigate = useNavigate();
     image = Image;
@@ -25,16 +27,25 @@ export default function DietItem({id, image, name, price}) {
         .catch((error) => {console.log(error)});
     }, []);
 
+    React.useEffect(() => {
+        isDietBought();
+    });
+
     // check if receipe is already bought by user
     function isDietBought(){
-        let obj = diets.find(diet => diet.userId === id);
-        // console.log(obj);
-        return obj;
+        const obj = diets.find(diet => diet.dietId === id);
+        
+        console.log("verify diet");
+        console.log(diets);
+        console.log(obj);
+
+        if(obj){
+            setShowButton(false);
+        }
     }
 
-    console.log(diets);
-    isDietBought();
 
+    // isDietBought();
     function handleBuy() { 
         console.log(id);
         const obj = {
@@ -51,8 +62,9 @@ export default function DietItem({id, image, name, price}) {
         .catch( (error) => { console.log(error); alert("Payment error");});
     }
 
+    // isDietBought();
     return (
-        <div className="menuItem" >
+        <div className="menuItem">
             <div onClick={handleRoute}>
                 <div style={{ backgroundImage: `url(${image})` }}>
                 </div>
@@ -60,7 +72,12 @@ export default function DietItem({id, image, name, price}) {
             </div>
             <div className="item-end">
                 <div id="price">{price}LEI</div>
-                <div id="buton"><button className="btn btn-primary" onClick={handleBuy}>Buy</button></div>
+                {showButton &&
+                        <div id="buton"><button className="btn btn-primary" onClick={handleBuy}>Buy</button></div>
+                }
+                {/* {(showButton === false) &&
+                        <div id="buton"><button className="btn btn-primary" onClick={handleBuy}>Buy</button></div>
+                } */}
             </div>
         </div>
     )

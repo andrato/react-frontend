@@ -5,7 +5,7 @@ import FoodService from '../services/FoodService';
 import "../styles/Food.css"
 
 
-export default function FoodItem({id, name, calories}) {
+export default function FoodItem({id, name, calories, shouldBuy}) {
 
     const [showIngredients, setShowIngredients] = React.useState(false);
     const [ingredients, setIngredients] = React.useState([]);
@@ -18,12 +18,19 @@ export default function FoodItem({id, name, calories}) {
 
     function handleClick() {
         // alert(`Element ${id} was clicked`);
-        setShowIngredients(!showIngredients);
+        console.log(shouldBuy);
+        if(!shouldBuy){
+            setShowIngredients(!showIngredients);
+        }
+        else {
+            alert("To see the receipe, you must buy the diet!");
+        }
     }
 
     const mystyle = {
         marginLeft: "30px"
       };
+
       
     return (
         <div>

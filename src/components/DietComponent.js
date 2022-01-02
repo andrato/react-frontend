@@ -16,19 +16,20 @@ function DietComponent (props){
     const [diet, setDiet] = React.useState('');
     const [foods, setFoods] = React.useState([]);
     const [diets, setDiets] = React.useState([]);
+    const [showButton, setShowButton] = React.useState(true);
     const navigate = useNavigate();
 
     React.useEffect(() => { 
         DietService.getDiet(id).then((response) => {
             setDiet(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         })
     },'');
 
     React.useEffect(() => { 
         FoodService.getFoodsByDiet(id).then((response) => {
             setFoods(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         })
     },[]);
 
@@ -36,19 +37,36 @@ function DietComponent (props){
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
         PaymentService.getDiets(13).then((response) => {
             setDiets(response.data);
+            // isDietBought();
         })
         .catch((error) => {console.log(error)});
     }, []);
 
+    React.useEffect(() => {
+        isDietBought();
+      });
+
     // check if receipe is already bought by user
     function isDietBought(){
-        let obj = diets.find(diet => diet.userId === id);
+        console.log(diets);
+        // console.log(diets[0].dietId);
+        // console.log(id);
+        // const obj = diets.find(diet => diet.dietId === id);
+        
+        // console.log("verify diet");
+        // console.log(diets);
         // console.log(obj);
-        return obj;
-    }
 
-    console.log(foods);
-    isDietBought();
+        // if(obj){
+        //     setShowButton(false);
+        // }
+        for(let x of diets){
+            if(x.dietId === Number(id)) {
+                setShowButton(false);
+                break;
+            }
+        }
+    }
 
     function handleBuy() { 
         console.log(id);
@@ -73,11 +91,12 @@ function DietComponent (props){
         // and the user should be able to access the foods
         // until user does not buy the diet, the foods will be grayed out
         PaymentService.addPayment(obj) 
-        .then( (response) => { console.log("e bine"); navigate(`/diet/${diet.id}`); })
+        .then( (response) => { navigate(`/diet/${id}`); })
         .catch( (error) => { console.log(error); alert("Payment error");});
     }
 
     //console.log(diet);
+    // isDietBought();
     return (
         <div className="menu">
             {
@@ -87,11 +106,13 @@ function DietComponent (props){
                                 <h2>{diet.name}</h2>
                                 {/* <pre>Goal: <span>{diet.price}</span></pre> */}
                                 <pre>Maximum calories: <span>{diet.maximumCalories}</span></pre>
-                                <pre>Price: <span>{diet.price}</span></pre>
+                                <pre>Price: <span>{diet.price} LEI</span></pre>
                                 <pre>Description: <span>...</span></pre>
-                                <div id="div-btn" onClick={handleBuy}>
+                                
+                        
+                                {showButton &&<div id="div-btn" onClick={handleBuy}>
                                     <button>Buy</button>
-                                </div>
+                                </div>}
                         </div>
                         <div className="unu"> 
                             <img src={Image} alt="Paris" width="450" />
@@ -103,7 +124,7 @@ function DietComponent (props){
                             foods.map(
                                 (food, key) => {
                                     if(food.category === "BREAKFAST")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories}/>
+                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                 }
                             )
                         }
@@ -114,7 +135,7 @@ function DietComponent (props){
                             foods.map(
                                 (food, key) => {
                                     if(food.category === "LUNCH")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories}/>
+                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
 
                                 }
                             )
@@ -126,7 +147,7 @@ function DietComponent (props){
                             foods.map(
                                 (food, key) => {
                                     if(food.category === "DINNER")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories}/>
+                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                 }
                             )
                         }
@@ -137,20 +158,11 @@ function DietComponent (props){
                             foods.map(
                                 (food, key) => {
                                     if(food.category === "SNACKS")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories}/>
+                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                 }
                             )
                         }
                     </div>
-                    {/* <div>
-                        {
-                            cities.map(
-                                (city, key) => {
-                                    return <option value={`${city.id}`}> {city.name}</option>
-                                }
-                            )
-                        }
-                    </div> */}
                 </div>
             }   
         </div>
