@@ -2,11 +2,14 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 // import {Link, NavLink} from 'react-router-dom';
 import Image from "../assets/1.jpeg";
-import BillingService from '../services/BillingService';
+import PaymentService from '../services/PaymentService';
+import FoodService from '../services/FoodService';
 
 export default function DietItem({id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
+    const [foods, setFoods] = React.useState([]);
+    
     const navigate = useNavigate();
     image = Image;
   
@@ -16,15 +19,15 @@ export default function DietItem({id, image, name, price}) {
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        BillingService.getDiets(1).then((response) => {
+        PaymentService.getDiets(13).then((response) => {
             setDiets(response.data);
         })
-        .catch((error) => {alert(error)});
+        .catch((error) => {console.log(error)});
     }, []);
 
     // check if receipe is already bought by user
     function isDietBought(){
-        let obj = diets.find(diet => diet.dietDto.id === id);
+        let obj = diets.find(diet => diet.userId === id);
         // console.log(obj);
         return obj;
     }
@@ -35,23 +38,17 @@ export default function DietItem({id, image, name, price}) {
     function handleBuy() { 
         console.log(id);
         const obj = {
-            "userDto":{
-                "id": 1
-            },
-            "dietDto": {
-                "id": id
-            },
-            "paymentDto": {
-                "amount": price
-            }
+            "userId": 13,
+            "dietId": Number(id),
+            "amount": Number(price)
         };
 
         // to do: if order succedden, then the page should be reloaded
         // and the user should be able to access the foods
         // until user does not buy the diet, the foods will be grayed out
-        BillingService.buyDiet(obj) 
-        .then( (response) => { alert("Order succedded!"); })
-        .catch( (error) => { alert("An error occured! Please try again later!"); console.log(error); });
+        PaymentService.addPayment(obj) 
+        .then( (response) => { console.log("e bine"); handleRoute(); })
+        .catch( (error) => { console.log(error); alert("Payment error");});
     }
 
     return (
