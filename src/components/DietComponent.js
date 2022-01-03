@@ -7,6 +7,7 @@ import Image from "../assets/1.jpeg";
 import FoodService from '../services/FoodService';
 import PaymentService from '../services/PaymentService';
 import FoodItem from "./FoodItem";
+import AuthService from '../services/auth/AuthService';
 
 function DietComponent (props){
 
@@ -17,6 +18,9 @@ function DietComponent (props){
     const [foods, setFoods] = React.useState([]);
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
+    const user_token = AuthService.getCurrentUserToken();
+    const user_id = AuthService.getCurrentUserId();
+
     const navigate = useNavigate();
 
     React.useEffect(() => { 
@@ -35,31 +39,23 @@ function DietComponent (props){
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        PaymentService.getDiets(13).then((response) => {
-            setDiets(response.data);
-            // isDietBought();
-        })
-        .catch((error) => {console.log(error)});
+        if(user_token) {
+            PaymentService.getDiets(user_id).then((response) => {
+                setDiets(response.data);
+            })
+            .catch((error) => {console.log(error)});
+        }
     }, []);
 
     React.useEffect(() => {
-        isDietBought();
+        if(user_token) {
+            isDietBought();
+        }
       });
 
     // check if receipe is already bought by user
     function isDietBought(){
         console.log(diets);
-        // console.log(diets[0].dietId);
-        // console.log(id);
-        // const obj = diets.find(diet => diet.dietId === id);
-        
-        // console.log("verify diet");
-        // console.log(diets);
-        // console.log(obj);
-
-        // if(obj){
-        //     setShowButton(false);
-        // }
         for(let x of diets){
             if(x.dietId === Number(id)) {
                 setShowButton(false);
@@ -69,30 +65,35 @@ function DietComponent (props){
     }
 
     function handleBuy() { 
-        console.log(id);
-        // const obj = {
-        //     "userDto":{
-        //         "id": 1
-        //     },
-        //     "dietDto": {
-        //         "id": id
-        //     },
-        //     "paymentDto": {
-        //         "amount": price
-        //     }
-        // };
-        const obj = {
-            "userId": 13,
-            "dietId": Number(id),
-            "amount": Number(diet.price)
-        };
+        console.log("HandleBuy " + user_token);
+        if(user_token) {
+            console.log(id);
+            // const obj = {
+            //     "userDto":{
+            //         "id": 1
+            //     },
+            //     "dietDto": {
+            //         "id": id
+            //     },
+            //     "paymentDto": {
+            //         "amount": price
+            //     }
+            // };
+            const obj = {
+                "userId": 13,
+                "dietId": Number(id),
+                "amount": Number(diet.price)
+            };
 
-        // to do: if order succedden, then the page should be reloaded
-        // and the user should be able to access the foods
-        // until user does not buy the diet, the foods will be grayed out
-        PaymentService.addPayment(obj) 
-        .then( (response) => { navigate(`/diet/${id}`); })
-        .catch( (error) => { console.log(error); alert("Payment error");});
+            // to do: if order succedden, then the page should be reloaded
+            // and the user should be able to access the foods
+            // until user does not buy the diet, the foods will be grayed out
+            PaymentService.addPayment(obj) 
+            .then( (response) => { navigate(`/diet/${id}`); })
+            .catch( (error) => { console.log(error); alert("Payment error");});
+        } else {
+            navigate('/login');
+        }
     }
 
     //console.log(diet);

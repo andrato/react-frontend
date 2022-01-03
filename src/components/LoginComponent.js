@@ -1,17 +1,19 @@
-import { Navigation } from '@mui/icons-material';
 import React from 'react';
 import AuthService from '../services/auth/AuthService';
-// import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import '../styles/Login.css';
 
 function LoginComponent () {
-    // const navigate = useNavigate();
-  
-    // const handleRegister = () => { 
-    //     navigate(`/register`);
-    // }
-    // const [token, setToken] = React.useState("");
-    // const [id, setId] = React.useState("");
+    const navigate = useNavigate();
+    const user_token = AuthService.getCurrentUserToken();
+    const user_id = AuthService.getCurrentUserId();
+
+
+    React.useEffect(() => { 
+        if(user_token) {
+            navigate(`/users/${user_id}`);
+        }
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -25,7 +27,8 @@ function LoginComponent () {
             console.log("Suntem pe login");
             const { data } = await AuthService.login(userInfo);
             // console.log(data);
-            localStorage.setItem('user_token', JSON.stringify(data));
+            // AuthService.setCurrentUserToken(data);
+            JSON.stringify(localStorage.setItem('user_token', data));
         }   
         catch(error) {
             alert("Error on login: " + error);
@@ -35,7 +38,8 @@ function LoginComponent () {
             console.log("Suntem pe getInfo");
             const {data} = await AuthService.getUserByUsername(userInfo.username);
             console.log(data);
-            localStorage.setItem('user_id', JSON.stringify(data));
+            // AuthService.setCurrentUserId(data);
+            JSON.stringify(localStorage.setItem('user_id', data));
         }
         catch(error) {
             alert("Error on getUserByUsername: " + error);

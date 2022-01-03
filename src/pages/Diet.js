@@ -1,6 +1,5 @@
 import React from 'react'
-import DietComponent
- from '../components/DietComponent';
+import DietComponent from '../components/DietComponent';
 
 function Diet(props) {
     return (

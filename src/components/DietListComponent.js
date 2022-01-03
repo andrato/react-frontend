@@ -8,13 +8,6 @@ const DietListComponent = (props) => {
 
     const [diets, setDiets] = React.useState([]);
 
-    // JUST FOR TESTING
-    const getData = () => {
-        axios.get('http://localhost:8080/diets').then(res => {
-          console.table(res.data)
-        })
-    }
-
     React.useEffect(() => { 
         DietService.getDiets().then((response) => {
             setDiets(response.data)

@@ -34,10 +34,25 @@ class AuthService {
         });
   }
 
-  // getCurrentUser() {
-  //   return JSON.parse(localStorage.getItem('user'));;
-  // }
+  getCurrentUserToken() {
+    // return localStorage.getItem('user_token');
+    return JSON.parse(localStorage.getItem('user_token'));
+  }
 
+  getCurrentUserId() {
+    // return Number(localStorage.getItem('user_id'));
+    return JSON.parse(localStorage.getItem('user_id'));
+  }
+
+  setCurrentUserToken(data) {
+    // localStorage.setItem('user_token', data);
+    JSON.stringify(localStorage.setItem('user_token', data));
+  }
+
+  setCurrentUserId(data) {
+    // localStorage.setItem('user_id', data);
+    JSON.stringify(localStorage.setItem('user_id', data));
+  }
 
 };
 

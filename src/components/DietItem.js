@@ -1,16 +1,15 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-// import {Link, NavLink} from 'react-router-dom';
 import Image from "../assets/1.jpeg";
 import PaymentService from '../services/PaymentService';
-import FoodService from '../services/FoodService';
-import { SignalCellularNoSimOutlined } from '@mui/icons-material';
+import AuthService from '../services/auth/AuthService';
 
 export default function DietItem({id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
-    const user = JSON.parse(localStorage.getItem('user_token'));
+    const user_token = JSON.parse(localStorage.getItem('user_token'));//AuthService.getCurrentUserToken();
+    const user_id = Number(JSON.parse(localStorage.getItem('user_id'))); //AuthService.getCurrentUserId();
     const navigate = useNavigate();
     image = Image;
   
@@ -20,8 +19,8 @@ export default function DietItem({id, image, name, price}) {
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        if(user) {
-            PaymentService.getDiets(13).then((response) => {
+        if(user_token) {
+            PaymentService.getDiets(user_id).then((response) => {
                 setDiets(response.data);
             })
             .catch((error) => {console.log(error)});
@@ -29,7 +28,9 @@ export default function DietItem({id, image, name, price}) {
     }, []);
 
     React.useEffect(() => {
-        isDietBought();
+        if(user_token) {
+            isDietBought();
+        }
     });
 
     // check if receipe is already bought by user
@@ -45,22 +46,26 @@ export default function DietItem({id, image, name, price}) {
         }
     }
 
-
     // isDietBought();
     function handleBuy() { 
-        console.log(id);
-        const obj = {
-            "userId": 13,
-            "dietId": Number(id),
-            "amount": Number(price)
-        };
+        if(user_token) {
+            console.log(id);
+            const obj = {
+                "userId": 13,
+                "dietId": Number(id),
+                "amount": Number(price)
+            };
 
-        // to do: if order succedden, then the page should be reloaded
-        // and the user should be able to access the foods
-        // until user does not buy the diet, the foods will be grayed out
-        PaymentService.addPayment(obj) 
-        .then( (response) => { console.log("e bine"); handleRoute(); })
-        .catch( (error) => { console.log(error); alert("Payment error");});
+            // to do: if order succedden, then the page should be reloaded
+            // and the user should be able to access the foods
+            // until user does not buy the diet, the foods will be grayed out
+            PaymentService.addPayment(obj) 
+            .then( (response) => { console.log("e bine"); handleRoute(); })
+            .catch( (error) => { console.log(error); alert("Payment error");});
+        }
+        else {
+            navigate('/login');
+        }
     }
 
     // isDietBought();

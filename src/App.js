@@ -5,7 +5,7 @@ import './App.css';
 import NavbarComponent from './components/NavbarComponent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Diets from './pages/Diets';
-import Diet from './pages/Diet';
+import DietComponent from './components/DietComponent';
 import DietListTypeComponent from './components/DietListTypeComponent';
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
@@ -21,7 +21,7 @@ function App() {
         <NavbarComponent />
         <Routes>
           <Route path='/' element={<Diets/>} />
-          <Route path='/diet/:id' element={<Diet />} />
+          <Route path='/diet/:id' element={<DietComponent />} />
           <Route path='/dietType/:id' element={<DietListTypeComponent/>} />
           {/* <Route path='/user/:id' element={<Diet />} /> */}
           <Route path='/login' element={<LoginComponent />} />
