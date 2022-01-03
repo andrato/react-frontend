@@ -9,9 +9,8 @@ import { SignalCellularNoSimOutlined } from '@mui/icons-material';
 export default function DietItem({id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
-    const [foods, setFoods] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
-    
+    const user = JSON.parse(localStorage.getItem('user_token'));
     const navigate = useNavigate();
     image = Image;
   
@@ -21,10 +20,12 @@ export default function DietItem({id, image, name, price}) {
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        PaymentService.getDiets(13).then((response) => {
-            setDiets(response.data);
-        })
-        .catch((error) => {console.log(error)});
+        if(user) {
+            PaymentService.getDiets(13).then((response) => {
+                setDiets(response.data);
+            })
+            .catch((error) => {console.log(error)});
+        }
     }, []);
 
     React.useEffect(() => {

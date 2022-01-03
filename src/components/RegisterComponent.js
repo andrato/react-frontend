@@ -1,11 +1,10 @@
 import React from 'react';
 import LocationService from '../services/LocationService';
 import '../styles/Login.css';
-import RegisterService from '../services/RegisterService';
+import AuthService from '../services/auth/AuthService';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import { useNavigate } from 'react-router';
-import { ContactsOutlined } from '@mui/icons-material';
 
 function RegisterComponent () {
     const [cities, setCities] = React.useState([]);
@@ -17,11 +16,8 @@ function RegisterComponent () {
         LocationService.getCities().then((response) => {
             setCities(response.data);
         })
+        .catch(error => {alert(error);})
     }, []);
-
-    const handleRoute = (msg) => { 
-        navigate('/response', msg);
-    }
 
     const handleChange = value => {
         setDate(value);
@@ -42,10 +38,10 @@ function RegisterComponent () {
                          , "gender": (gender.value == 'female') ? 'F' : 'M'
                          , "city": Number(city.value)
                          , "birth_date": birth_date.toString()};
-        // console.log(userInfo);
-        RegisterService.sendUserInfo(userInfo)
-            .then( (response) => { alert("a mers"); /*navigate('/login');*/  /*navigate('/login');*/})
-            .catch( (error) => { alert(error) }); //"Could not register! Please try again!",
+
+        AuthService.register(userInfo)
+            .then( (response) => { navigate('/login'); })
+            .catch( (error) => { alert("Error on register: " + error) }); 
     }
 
     return (

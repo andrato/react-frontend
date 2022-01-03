@@ -1,6 +1,6 @@
 import { Navigation } from '@mui/icons-material';
 import React from 'react';
-// import UserService from '../services/UserService';
+import AuthService from '../services/auth/AuthService';
 // import { useParams } from 'react-router-dom';
 import '../styles/Login.css';
 
@@ -10,10 +10,36 @@ function LoginComponent () {
     // const handleRegister = () => { 
     //     navigate(`/register`);
     // }
+    // const [token, setToken] = React.useState("");
+    // const [id, setId] = React.useState("");
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         const { username, password } = e.target.elements;
+
+        const userInfo = { username: username.value 
+                         , password: password.value};
+
+        // var data;
+        try {
+            console.log("Suntem pe login");
+            const { data } = await AuthService.login(userInfo);
+            // console.log(data);
+            localStorage.setItem('user_token', JSON.stringify(data));
+        }   
+        catch(error) {
+            alert("Error on login: " + error);
+        }
+        
+        try{
+            console.log("Suntem pe getInfo");
+            const {data} = await AuthService.getUserByUsername(userInfo.username);
+            console.log(data);
+            localStorage.setItem('user_id', JSON.stringify(data));
+        }
+        catch(error) {
+            alert("Error on getUserByUsername: " + error);
+        }
     }
 
     return (
@@ -32,13 +58,6 @@ function LoginComponent () {
                             {/* <label>Password</label> */}
                             <input id="password" type="password" placeholder="Enter password" />
                         </div>
-
-                        {/* <div className="info">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                            </div>
-                        </div> */}
 
                         <button type="submit" className="loginButton">SUBMIT</button>
                         <p className="password"> Don't have an account?
