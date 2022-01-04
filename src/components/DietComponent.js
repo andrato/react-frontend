@@ -78,6 +78,7 @@ function DietComponent (props){
             //     }
             // };
             const obj = {
+                "dietName": diet.name,
                 "userId": Number(user_id),
                 "dietId": Number(id),
                 "amount": Number(diet.price)

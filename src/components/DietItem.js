@@ -49,6 +49,7 @@ export default function DietItem({id, image, name, price}) {
     function handleBuy() { 
         if(user_token) {
             const obj = {
+                "dietName": name,
                 "userId": Number(user_id),
                 "dietId": Number(id),
                 "amount": Number(price)
