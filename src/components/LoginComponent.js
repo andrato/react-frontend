@@ -2,7 +2,6 @@ import React from 'react';
 import AuthService from '../services/auth/AuthService';
 import { useNavigate } from "react-router-dom";
 import '../styles/Login.css';
-import user  from "../services/auth/UserStorage";
 
 function LoginComponent () {
     const navigate = useNavigate();
@@ -28,7 +27,6 @@ function LoginComponent () {
             const { data } = await AuthService.login(userInfo);
             console.log(data);
             localStorage.setItem('user_token', data);
-            user.setToken(data);
         }   
         catch(error) {
             alert("Error on login: " + error);
@@ -39,7 +37,6 @@ function LoginComponent () {
             const {data} = await AuthService.getUserByUsername(userInfo.username);
             console.log("getInfo: " + data.id);
             localStorage.setItem('user_id', data.id);            
-            user.setId(data);
             navigate(`/users/${data.id}`)
         }
         catch(error) {

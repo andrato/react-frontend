@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import Image from "../assets/1.jpeg";
 import PaymentService from '../services/PaymentService';
-import AuthService from '../services/auth/AuthService';
 
 export default function DietItem({id, image, name, price}) {
 

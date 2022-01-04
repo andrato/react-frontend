@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import DietService from '../services/DietService'
 import DietItem from './DietItem';
 import "../styles/DietList.css";

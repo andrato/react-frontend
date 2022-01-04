@@ -4,7 +4,7 @@ import TypeService from '../services/TypeService';
 
 import {Link, NavLink} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import {FiUser, FiShoppingCart} from "react-icons/fi";
+import {FiUser} from "react-icons/fi";
 
 import Logo from '../assets/logo3.png';
 
@@ -23,9 +23,9 @@ function NavbarComponent(props) {
 
     React.useEffect(() => { 
         setDiets([
-            {id: 0, name: "VEGAN"},
-            {id: 1, name: "LOW_SUGARS"},
-            {id: 2, name: "PROTEIN" }
+            {id: 0, name: "Vegan"},
+            {id: 1, name: "Low Sugars"},
+            {id: 2, name: "Protein" }
         ]);
         // TypeService.getTypes().then((response) => {
         //     console.log("navbar - start");

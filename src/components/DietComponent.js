@@ -7,7 +7,6 @@ import Image from "../assets/1.jpeg";
 import FoodService from '../services/FoodService';
 import PaymentService from '../services/PaymentService';
 import FoodItem from "./FoodItem";
-import AuthService from '../services/auth/AuthService';
 
 function DietComponent (props){
 
