@@ -23,7 +23,6 @@ export default function DietListTypeComponent(props) {
     return (
         <div className="menu">
             <div className="menuList">
-                <p> {id} </p>
                 {
                     diets.map(
                         (diet, key) => {

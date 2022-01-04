@@ -99,72 +99,74 @@ function DietComponent (props){
     // isDietBought();
     return (
         <div className="menu">
-            {
-                <div className="totul">
-                    <div id="the-first">
-                        <div className="doi">
-                                <h2>{diet.name}</h2>
-                                {/* <pre>Goal: <span>{diet.price}</span></pre> */}
-                                <pre>Maximum calories: <span>{diet.maximumCalories}</span></pre>
-                                <pre>Price: <span>{diet.price} LEI</span></pre>
-                                <pre>Description: <span>...</span></pre>
-                                
-                        
-                                {showButton &&<div id="div-btn" onClick={handleBuy}>
-                                    <button>Buy</button>
-                                </div>}
+            <div className="menuList">
+                {
+                    <div className="totul">
+                        <div id="the-first">
+                            <div className="doi">
+                                    <h2>{diet.name}</h2>
+                                    {/* <pre>Goal: <span>{diet.price}</span></pre> */}
+                                    <pre>Maximum calories: <span>{diet.maximumCalories}</span></pre>
+                                    <pre>Price: <span>{diet.price} LEI</span></pre>
+                                    <pre>Description: <span>...</span></pre>
+                                    
+                            
+                                    {showButton &&<div id="div-btn" onClick={handleBuy}>
+                                        <button>Buy</button>
+                                    </div>}
+                            </div>
+                            <div className="unu"> 
+                                <img src={Image} alt="Paris" width="450" />
+                            </div>
                         </div>
-                        <div className="unu"> 
-                            <img src={Image} alt="Paris" width="450" />
-                        </div>
-                    </div>
-                    <div className="the-second">
                         <h2>Breakfast</h2>
-                        {
-                            foods.map(
-                                (food, key) => {
-                                    if(food.category === "BREAKFAST")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
-                                }
-                            )
-                        }
-                    </div>
-                    <div className="the-second">
+                        <div className="the-second">
+                            {
+                                foods.map(
+                                    (food, key) => {
+                                        if(food.category === "BREAKFAST")
+                                            return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
+                                    }
+                                )
+                            }
+                        </div>
                         <h2>Lunch</h2>
-                        {
-                            foods.map(
-                                (food, key) => {
-                                    if(food.category === "LUNCH")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
+                        <div className="the-second">
+                            {
+                                foods.map(
+                                    (food, key) => {
+                                        if(food.category === "LUNCH")
+                                            return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
 
-                                }
-                            )
-                        }
-                    </div>
-                    <div className="the-second">
+                                    }
+                                )
+                            }
+                        </div>
                         <h2>Dinner</h2>
-                        {
-                            foods.map(
-                                (food, key) => {
-                                    if(food.category === "DINNER")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
-                                }
-                            )
-                        }
-                    </div>
-                    <div className="the-second">
+                        <div className="the-second">
+                            {
+                                foods.map(
+                                    (food, key) => {
+                                        if(food.category === "DINNER")
+                                            return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
+                                    }
+                                )
+                            }
+                        </div>
                         <h2>Snacks</h2>
-                        {
-                            foods.map(
-                                (food, key) => {
-                                    if(food.category === "SNACKS")
-                                        return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
-                                }
-                            )
-                        }
+                        <div className="the-second">
+                            {
+                                foods.map(
+                                    (food, key) => {
+                                        if(food.category === "SNACKS")
+                                            return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
+                                    }
+                                )
+                            }
+                        </div>
                     </div>
-                </div>
-            }   
+                }   
+            </div>
         </div>
     )
 }

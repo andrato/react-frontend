@@ -155,6 +155,7 @@ input{
 
 .calendar {
     margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .react-calendar button {

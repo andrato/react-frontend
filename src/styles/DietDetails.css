@@ -44,8 +44,8 @@
 
 .the-second {
     display: block;
-    padding-top: 40px;
     width: 1000px;
+    display: flex;
 }
 
 #div-btn {

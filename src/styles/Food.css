@@ -3,7 +3,9 @@
     height: 100px;
     display: block;
     border-radius: 15px;
-    margin: 20px;
+    /* margin: 20px; */
+    margin-bottom: 20px;
+    margin-right: 30px;
     box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
 }
 
