@@ -18,24 +18,23 @@ function DietComponent (props){
     const [foods, setFoods] = React.useState([]);
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
-    const user_token = AuthService.getCurrentUserToken();
-    const user_id = AuthService.getCurrentUserId();
+    const user_token = localStorage.getItem("user_token");
+    const user_id = localStorage.getItem("user_id");
 
     const navigate = useNavigate();
 
     React.useEffect(() => { 
         DietService.getDiet(id).then((response) => {
             setDiet(response.data);
-            // console.log(response.data);
         })
-    },'');
+    },[id]);
 
     React.useEffect(() => { 
         FoodService.getFoodsByDiet(id).then((response) => {
             setFoods(response.data);
             // console.log(response.data);
         })
-    },[]);
+    },[id]);
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
@@ -45,7 +44,7 @@ function DietComponent (props){
             })
             .catch((error) => {console.log(error)});
         }
-    }, []);
+    }, [id]);
 
     React.useEffect(() => {
         if(user_token) {
@@ -65,7 +64,7 @@ function DietComponent (props){
     }
 
     function handleBuy() { 
-        console.log("HandleBuy " + user_token);
+        console.log("HandleBuy ");
         if(user_token) {
             console.log(id);
             // const obj = {
@@ -80,7 +79,7 @@ function DietComponent (props){
             //     }
             // };
             const obj = {
-                "userId": 13,
+                "userId": Number(user_id),
                 "dietId": Number(id),
                 "amount": Number(diet.price)
             };

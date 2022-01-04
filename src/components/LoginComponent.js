@@ -2,12 +2,12 @@ import React from 'react';
 import AuthService from '../services/auth/AuthService';
 import { useNavigate } from "react-router-dom";
 import '../styles/Login.css';
+import user  from "../services/auth/UserStorage";
 
 function LoginComponent () {
     const navigate = useNavigate();
-    const user_token = AuthService.getCurrentUserToken();
-    const user_id = AuthService.getCurrentUserId();
-
+    const user_token = localStorage.getItem("user_token");
+    const user_id = localStorage.getItem("user_id");
 
     React.useEffect(() => { 
         if(user_token) {
@@ -26,9 +26,9 @@ function LoginComponent () {
         try {
             console.log("Suntem pe login");
             const { data } = await AuthService.login(userInfo);
-            // console.log(data);
-            // AuthService.setCurrentUserToken(data);
-            JSON.stringify(localStorage.setItem('user_token', data));
+            console.log(data);
+            localStorage.setItem('user_token', data);
+            user.setToken(data);
         }   
         catch(error) {
             alert("Error on login: " + error);
@@ -37,9 +37,10 @@ function LoginComponent () {
         try{
             console.log("Suntem pe getInfo");
             const {data} = await AuthService.getUserByUsername(userInfo.username);
-            console.log(data);
-            // AuthService.setCurrentUserId(data);
-            JSON.stringify(localStorage.setItem('user_id', data));
+            console.log("getInfo: " + data.id);
+            localStorage.setItem('user_id', data.id);            
+            user.setId(data);
+            navigate(`/users/${data.id}`)
         }
         catch(error) {
             alert("Error on getUserByUsername: " + error);

@@ -22,9 +22,16 @@ function NavbarComponent(props) {
     const [diets, setDiets] = React.useState([]);
 
     React.useEffect(() => { 
-        TypeService.getTypes().then((response) => {
-            setDiets(response.data)
-        })
+        setDiets([
+            {id: 0, name: "VEGAN"},
+            {id: 1, name: "LOW_SUGARS"},
+            {id: 2, name: "PROTEIN" }
+        ]);
+        // TypeService.getTypes().then((response) => {
+        //     console.log("navbar - start");
+        //     //setDiets(response.data)
+        //     console.log("navbar - end");
+        // })
     }, []);
 
     return (

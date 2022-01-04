@@ -1,14 +1,10 @@
 import axios from "axios";
 import authHeader from './AuthHeader';
 
-
 const API_URL = "http://localhost:8080/api/auth/";
 
 class AuthService {
   login(obj) {
-    console.log("login(obj) - will remove previous user_token");
-    localStorage.removeItem("user_token");
-    console.log("login(obj) - " + localStorage.getItem("user_token"));
     return axios.post(`http://localhost:8080/auth/login`, obj);
   }
 
@@ -22,6 +18,7 @@ class AuthService {
   }
 
   logout() {
+    // user.remove();
     localStorage.removeItem("user_token");
     localStorage.removeItem("user_id");
   }
@@ -34,25 +31,25 @@ class AuthService {
         });
   }
 
-  getCurrentUserToken() {
-    // return localStorage.getItem('user_token');
-    return JSON.parse(localStorage.getItem('user_token'));
-  }
+  // getCurrentUserToken() {
+  //   // return localStorage.getItem('user_token');
+  //   return JSON.parse(localStorage.getItem('user_token'));
+  // }
 
-  getCurrentUserId() {
-    // return Number(localStorage.getItem('user_id'));
-    return JSON.parse(localStorage.getItem('user_id'));
-  }
+  // getCurrentUserId() {
+  //   // return Number(localStorage.getItem('user_id'));
+  //   return JSON.parse(localStorage.getItem('user_id'));
+  // }
 
-  setCurrentUserToken(data) {
-    // localStorage.setItem('user_token', data);
-    JSON.stringify(localStorage.setItem('user_token', data));
-  }
+  // setCurrentUserToken(data) {
+  //   // localStorage.setItem('user_token', data);
+  //   JSON.stringify(localStorage.setItem('user_token', data));
+  // }
 
-  setCurrentUserId(data) {
-    // localStorage.setItem('user_id', data);
-    JSON.stringify(localStorage.setItem('user_id', data));
-  }
+  // setCurrentUserId(data) {
+  //   // localStorage.setItem('user_id', data);
+  //   JSON.stringify(localStorage.setItem('user_id', data));
+  // }
 
 };
 

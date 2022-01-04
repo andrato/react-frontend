@@ -10,6 +10,7 @@ const DietListComponent = (props) => {
 
     React.useEffect(() => { 
         DietService.getDiets().then((response) => {
+            console.log(response.data);
             setDiets(response.data)
         })
     }, []);

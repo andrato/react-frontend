@@ -28,7 +28,7 @@ function UserDietsComponent(props) {
                     <NavLink to={`/users/${id}/diets`} className="active"> My diets </NavLink>
                 </div>
                 <div className="logout">
-                    <NavLink to={`/`} className="inactive"> Log out </NavLink>
+                    <NavLink to={`/logout`} className="inactive"> Log out </NavLink>
                 </div>
             </div>
                 

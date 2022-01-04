@@ -6,20 +6,24 @@ import DietItem from './DietItem';
 export default function DietListTypeComponent(props) {
 
     const [diets, setDiets] = React.useState([]);
+    const [category, setCategory] = React.useState(1);
 
     let { id } = useParams(); 
 
     React.useEffect(() => { 
         DietService.getDietsByType(id).then((response) => {
-            setDiets(response.data)
+            console.log(response.data);
+            setDiets(response.data);
         })
-        //console.log("called " + id);
-    }, []);
+        setCategory(id);
+        console.log("called " + id);
+    }, [id]);
 
     // display diet list
     return (
         <div className="menu">
             <div className="menuList">
+                <p> {id} </p>
                 {
                     diets.map(
                         (diet, key) => {

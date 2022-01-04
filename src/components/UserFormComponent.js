@@ -41,6 +41,7 @@ function UserFormComponent(props) {
         UserService.update(id, userInfo)
         .then( (response) => { alert("a mers"); navigate(`/users/${id}`); /*navigate('/login');*/})
         .catch( (error) => { alert(error) }); //"Could not register! Please try again!",
+
     }
 
     return (
@@ -52,7 +53,7 @@ function UserFormComponent(props) {
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
                 </div>
                 <div className="logout">
-                    <NavLink to={`/`} className="inactive"> Log out </NavLink>
+                    <NavLink to={`/logout`} className="inactive"> Log out </NavLink>
                 </div>
             </div>
                 

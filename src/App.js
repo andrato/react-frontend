@@ -13,6 +13,7 @@ import UserComponent from './components/UserComponent';
 import UserDietsComponent from './components/UserDietsComponent';
 import UserWeightHappinessComponent from './components/UserWeightHappinessComponent';
 import UserFormComponent from './components/UserFormComponent';
+import LogoutComponent from './components/LogoutComponent';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/users/:id/diets' element={<UserDietsComponent />} />
           <Route path='/users/:id/updates' element={<UserWeightHappinessComponent />} />
           <Route path='/users/:id/form' element={<UserFormComponent />} />
+          <Route path='/logout' element={<LogoutComponent />} />
         </Routes>
       </Router>
     </div>

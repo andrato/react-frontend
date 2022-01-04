@@ -8,8 +8,8 @@ export default function DietItem({id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
-    const user_token = JSON.parse(localStorage.getItem('user_token'));//AuthService.getCurrentUserToken();
-    const user_id = Number(JSON.parse(localStorage.getItem('user_id'))); //AuthService.getCurrentUserId();
+    const user_token = localStorage.getItem("user_token");
+    const user_id = localStorage.getItem("user_id");
     const navigate = useNavigate();
     image = Image;
   
@@ -49,9 +49,8 @@ export default function DietItem({id, image, name, price}) {
     // isDietBought();
     function handleBuy() { 
         if(user_token) {
-            console.log(id);
             const obj = {
-                "userId": 13,
+                "userId": Number(user_id),
                 "dietId": Number(id),
                 "amount": Number(price)
             };
