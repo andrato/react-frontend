@@ -29,19 +29,34 @@ function UserFormComponent(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const {last_name, username, city} = e.target.elements;
+        const {last_name, first_name, city} = e.target.elements;
 
-        const userInfo = { "last_name": last_name.value
-                         , "username": username.value
-                         , "city": Number(city.value)};
+        if(last_name.value) {
+            user.last_name = last_name.value;
+        }
+        if(first_name.value){
+            user.first_name = first_name.value;
+        }
+        if(city.value){
+            user.cityDto = {
+                "id": Number(city.value)
+            }
+        }
+
+        const userInfo = { "id": user.id
+                         , "first_name": user.first_name
+                         , "last_name": user.last_name
+                         , "username": user.username
+                         , "cityDto": user.cityDto
+                         , "birth_date": user.birth_date
+                         , "gender": user.gender };
 
         console.log("este pe submit in update");
         console.log(userInfo);
 
         UserService.update(id, userInfo)
-        .then( (response) => { alert("a mers"); navigate(`/users/${id}`); /*navigate('/login');*/})
+        .then( (response) => { navigate(`/users/${id}`); /*navigate('/login');*/})
         .catch( (error) => { alert(error) }); //"Could not register! Please try again!",
-
     }
 
     return (
@@ -62,8 +77,8 @@ function UserFormComponent(props) {
                     {
                         <div>
                             <div>
-                                <label>Username: </label>
-                                <input className="update" id="username" placeholder={user.username}/>
+                                <label>First name: </label>
+                                <input className="update" id="first_name" placeholder={user.first_name}/>
                             </div>
                             <div>
                                 <label>Last name: </label>
