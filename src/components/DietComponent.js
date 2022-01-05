@@ -127,7 +127,7 @@ function DietComponent (props){
                                         if(food.category === "BREAKFAST") {
                                             return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                         }else {
-                                            return <FoodItem/>
+                                            return ''
                                         }
                                     }
                                 )
@@ -141,7 +141,7 @@ function DietComponent (props){
                                         if(food.category === "LUNCH"){
                                             return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                         }else {
-                                            return <FoodItem/>
+                                            return ''
                                         }
                                     }
                                 )
@@ -155,7 +155,7 @@ function DietComponent (props){
                                         if(food.category === "DINNER"){
                                             return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                         }else {
-                                            return <FoodItem/>
+                                            return '';
                                         }
                                     }
                                 )
@@ -169,7 +169,7 @@ function DietComponent (props){
                                         if(food.category === "SNACKS"){
                                             return <FoodItem id={food.id} name={food.name} calories={food.calories} shouldBuy={showButton}/>
                                         }else {
-                                            return <FoodItem/>
+                                            return ''
                                         }
                                     }
                                 )
