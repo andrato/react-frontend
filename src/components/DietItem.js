@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Image from "../assets/1.jpeg";
 import PaymentService from '../services/PaymentService';
 
-export default function DietItem({id, image, name, price}) {
+export default function DietItem({key, id, image, name, price}) {
 
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
@@ -24,7 +24,7 @@ export default function DietItem({id, image, name, price}) {
             })
             .catch((error) => {console.log(error)});
         }
-    }, []);
+    }, [key]);
 
     React.useEffect(() => {
         if(user_token) {

@@ -20,7 +20,7 @@ function UserComponent(props) {
         UserService.getUserById(id).then((response) => {
             setUser(response.data);
         })
-    }, '');
+    }, []);
 
     React.useEffect(() => { 
         WeightService.getWeight(id).then((response) => {

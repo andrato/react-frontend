@@ -26,7 +26,7 @@ export default function DietListTypeComponent(props) {
                 {
                     diets.map(
                         (diet, key) => {
-                            return <DietItem id={diet.id} image={diet.image} name={diet.name} price={diet.price}/>
+                            return <DietItem key={diet.key} id={diet.id} image={diet.image} name={diet.name} price={diet.price}/>
                         }
                     )
                 }
