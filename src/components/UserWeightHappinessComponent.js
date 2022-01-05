@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import {NavLink} from 'react-router-dom';
 import { Slider } from '@mui/material';
-import moment from 'moment';
+// import moment from 'moment';
 import { useNavigate } from 'react-router';
 import '../styles/User.css';
 import HappinessService from '../services/HappinessService';
@@ -28,8 +28,8 @@ function UserWeightHappinessComponent(props) {
     function handleSubmit(e) {
         e.preventDefault();
         const { weight } = e.target.elements;
-        const date = new Date();
-        const date_now = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
+        // const date = new Date();
+        // const date_now = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
     
         const happinessObj = {
             happiness_level: happiness,
@@ -46,7 +46,7 @@ function UserWeightHappinessComponent(props) {
         }
         
         let ok = false;
-        if(happiness != '') {
+        if(happiness !=='') {
             ok = true;
             HappinessService.setHappiness(happinessObj)
                 .then( (response) => { console.log('E bine pe happiness'); })
@@ -61,7 +61,7 @@ function UserWeightHappinessComponent(props) {
         }
 
         console.log(ok);
-        if(ok == true) {
+        if(ok === true) {
             // setTimeout(navigate(`/users/${id}`), 1000); 
             // wait so that 
             setTimeout(() => {  navigate(`/users/${id}`); }, 1000);

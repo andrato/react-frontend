@@ -20,21 +20,21 @@ function UserComponent(props) {
         UserService.getUserById(id).then((response) => {
             setUser(response.data);
         })
-    }, []);
+    }, [id]);
 
     React.useEffect(() => { 
         WeightService.getWeight(id).then((response) => {
             setWeight(response.data);
             console.log(response);
         })
-    }, []);
+    }, [id]);
 
     React.useEffect(() => { 
         HappinessService.getHappiness(id).then((response) => {
             setHappiness(response.data);
             console.log(response.data);
         })
-    }, []);
+    }, [id]);
 
     function handleUpdate() {
         navigate(`/users/${id}/form`);

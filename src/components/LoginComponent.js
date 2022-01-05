@@ -12,7 +12,7 @@ function LoginComponent () {
         if(user_token) {
             navigate(`/users/${user_id}`);
         }
-    }, []);
+    }, [user_token, user_id, navigate]);
 
     async function handleSubmit(e) {
         e.preventDefault();

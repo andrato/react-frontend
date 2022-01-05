@@ -6,7 +6,7 @@ import DietItem from './DietItem';
 export default function DietListTypeComponent(props) {
 
     const [diets, setDiets] = React.useState([]);
-    const [category, setCategory] = React.useState(1);
+    // const [category, setCategory] = React.useState(1);
 
     let { id } = useParams(); 
 
@@ -15,7 +15,7 @@ export default function DietListTypeComponent(props) {
             console.log(response.data);
             setDiets(response.data);
         })
-        setCategory(id);
+        // setCategory(id);
         console.log("called " + id);
     }, [id]);
 

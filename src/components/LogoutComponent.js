@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthService from '../services/auth/AuthService';
-import { useNavigate, Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import '../styles/Login.css';
 
 function LogoutComponent () {
@@ -11,7 +11,7 @@ function LogoutComponent () {
     React.useEffect(() => { 
         AuthService.logout();
         navigate("/");
-    }, []);
+    }, [navigate]);
 
     return (
         <div >

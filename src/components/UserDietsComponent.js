@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import UserService from '../services/UserService';
+// import UserService from '../services/UserService';
 import {NavLink} from 'react-router-dom';
 import PaymentService from '../services/PaymentService';
 import DietItem from './DietItem';
 import '../styles/User.css';
-import DietService from '../services/DietService';
+// import DietService from '../services/DietService';
 
 function UserDietsComponent(props) {
 
@@ -30,7 +30,7 @@ function UserDietsComponent(props) {
             })
             .catch((error) => {console.log(error)});
         }            
-    }, []);
+    }, [user_token, user_id]);
 
     return (
         <div className="all">

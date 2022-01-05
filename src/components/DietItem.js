@@ -24,7 +24,7 @@ export default function DietItem({key, id, image, name, price}) {
             })
             .catch((error) => {console.log(error)});
         }
-    }, [key]);
+    }, [user_token, user_id]);
 
     React.useEffect(() => {
         if(user_token) {

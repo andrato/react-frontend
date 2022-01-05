@@ -17,9 +17,8 @@ function UserFormComponent(props) {
     React.useEffect(() => { 
         UserService.getUserById(id).then((response) => {
             setUser(response.data);
-            console.log(user);
         })
-    }, '');
+    }, [id]);
 
     React.useEffect(() => { 
         LocationService.getCities().then((response) => {

@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import Image from "../assets/1.jpeg";
 import FoodService from '../services/FoodService';
 import "../styles/Food.css"
 
@@ -14,7 +12,7 @@ export default function FoodItem({id, name, calories, shouldBuy}) {
         FoodService.getIngredientsByFood(id).then((response) => {
             setIngredients(response.data)
         })
-    }, []);
+    }, [id]);
 
     function handleClick() {
         // alert(`Element ${id} was clicked`);

@@ -1,23 +1,12 @@
 import React from 'react'
 import ReorderIcon from '@mui/icons-material/Reorder';
-import TypeService from '../services/TypeService';
-
 import {Link, NavLink} from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import {FiUser} from "react-icons/fi";
-
 import Logo from '../assets/logo3.png';
-
 import "../styles/NavbarStyle.css";
 
 
 function NavbarComponent(props) {
-
-    const navigate = useNavigate();
-  
-    const handleRoute = () =>{ 
-        navigate("/");
-    }
 
     const [diets, setDiets] = React.useState([]);
 
@@ -38,7 +27,7 @@ function NavbarComponent(props) {
         <div className="navbar">
             <div className="leftSide">
                 <Link to="/">
-                    <img src={Logo}></img>
+                    <img src={Logo} alt="logo"></img>
                 </Link>
             </div>
             <div className="rightSide">

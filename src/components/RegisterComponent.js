@@ -35,7 +35,7 @@ function RegisterComponent () {
                          , "last_name": last_name.value
                          , "username": username.value
                          , "password": password.value 
-                         , "gender": (gender.value == 'female') ? 'F' : 'M'
+                         , "gender": (gender.value === 'female') ? 'F' : 'M'
                          , "city": Number(city.value)
                          , "birth_date": birth_date.toString()};
 
