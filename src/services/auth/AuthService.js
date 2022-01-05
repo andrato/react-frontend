@@ -1,11 +1,9 @@
 import axios from "axios";
 import authHeader from './AuthHeader';
 
-const API_URL = "http://localhost:8080/api/auth/";
-
 class AuthService {
   login(obj) {
-    return axios.post(`http://localhost:8080/auth/login`, obj);
+    return axios.post(`http://157.245.24.31:8080/auth/login`, obj);
   }
 
   getUserByUsername(username) {
@@ -14,7 +12,7 @@ class AuthService {
     // const access_token = { "Authorization":  token2 };
     // console.log(access_token);
     // console.log(authHeader());
-    return axios.get(`http://localhost:8080/users/username?request=${username}`, { headers: authHeader()});
+    return axios.get(`http://157.245.24.31:8080/users/username?request=${username}`, { headers: authHeader()});
   }
 
   logout() {
@@ -25,7 +23,7 @@ class AuthService {
 
   register(userInfo){
     console.log(userInfo); 
-    return axios.post('http://localhost:8080/registration/', userInfo, { headers: 
+    return axios.post('http://157.245.24.31:8080/registration/', userInfo, { headers: 
           // 'content-type': 'application/json',
           authHeader()
         });

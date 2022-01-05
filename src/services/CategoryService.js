@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const DIETS_REST_API_URL = 'http://localhost:8080/categories'
+const DIETS_REST_API_URL = 'http://157.245.24.31:8080/categories'
 
 class CategoryService {
     getCategories(){
