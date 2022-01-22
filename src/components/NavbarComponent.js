@@ -4,23 +4,21 @@ import {Link, NavLink} from 'react-router-dom';
 import {FiUser} from "react-icons/fi";
 import Logo from '../assets/logo3.png';
 import "../styles/NavbarStyle.css";
-
+import TypeService from '../services/TypeService';
 
 function NavbarComponent(props) {
 
     const [diets, setDiets] = React.useState([]);
 
     React.useEffect(() => { 
-        setDiets([
-            {id: 0, name: "Vegan"},
-            {id: 1, name: "Low Sugars"},
-            {id: 2, name: "Protein" }
-        ]);
-        // TypeService.getTypes().then((response) => {
-        //     console.log("navbar - start");
-        //     //setDiets(response.data)
-        //     console.log("navbar - end");
-        // })
+        // setDiets([
+        //     {id: 0, name: "Vegan"},
+        //     {id: 1, name: "Low Sugars"},
+        //     {id: 2, name: "Protein" }
+        // ]);
+        TypeService.getTypes().then((response) => {
+            setDiets(response.data)
+        })
     }, []);
 
     return (
@@ -42,9 +40,6 @@ function NavbarComponent(props) {
                     <ReorderIcon />
                 </button>
             </div>
-            {/* <div className="endNav" id="beforeIcons">
-                <Link to={'/cart'}> <FiShoppingCart /> </Link>
-            </div>   */}
             <div className="endNav" id="afterIcons">
                 <Link to={'/login'}> <FiUser /> </Link>
             </div>  
