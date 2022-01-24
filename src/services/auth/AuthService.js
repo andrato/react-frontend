@@ -18,6 +18,7 @@ class AuthService {
   logout() {
     // localStorage.removeItem("user_token");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("is_admin");
   }
 
   register(userInfo){

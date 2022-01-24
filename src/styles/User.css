@@ -122,8 +122,7 @@ tr:nth-child(even) {
     display: flex;
 }
 .logout a{
-    align-self: flex-end;
-    color: white;
+    color: #8e7cc3;
     margin-left: 60px;
     margin-top:20px;
     text-decoration: none;

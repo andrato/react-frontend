@@ -9,6 +9,10 @@ class BillingService {
         console.log(id);
         return axios.post(`http://localhost:8080/billings/user?id=${id}`);
     }
+
+    getBillings(){
+        return axios.get(`http://localhost:8080/billings/`);
+    }
 }
 
 // export object of this class

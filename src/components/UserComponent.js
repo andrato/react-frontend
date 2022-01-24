@@ -15,6 +15,8 @@ function UserComponent(props) {
     const [weight, setWeight] = React.useState([]);
     const [happiness, setHappiness] = React.useState([]);
     const navigate = useNavigate();
+    const is_admin = localStorage.getItem("is_admin");
+
 
     React.useEffect(() => { 
         UserService.getUserById(id).then((response) => {
@@ -47,6 +49,9 @@ function UserComponent(props) {
                     <NavLink to={`/users/${id}`} className="active"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
+                    {is_admin &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {is_admin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
                 </div>
                 <div className="logout">
                     <NavLink to={`/logout`} className="inactive"> Log out </NavLink>
@@ -61,10 +66,14 @@ function UserComponent(props) {
                         <pre >Last Name: <span> {user.last_name} </span>  </pre>
                         <pre >Username:  <span> {user.username} </span>  </pre>
                         <pre >Gender:       <span> {user.gender} </span>  </pre>
+                        <pre >Target:       <span> {user.target} </span>  </pre>
                         {/* <pre >City:       <span> {user.city} </span>  </pre>
                         <pre >Country:       <span> {user.country} </span>  </pre> */}
                     </div>
                 }
+                <div>
+
+                </div>
                 <div className="userButton">
                     <button className="loginButton" onClick={handleUpdate}>UPDATE</button>
                 </div>

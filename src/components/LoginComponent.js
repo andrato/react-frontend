@@ -35,7 +35,8 @@ function LoginComponent () {
             console.log("Suntem pe getInfo");
             const {data} = await AuthService.getUserByUsername(userInfo.username);
             console.log("getInfo: " + data.id);
-            localStorage.setItem('user_id', data.id);            
+            localStorage.setItem('user_id', data.id);     
+            localStorage.setItem('is_admin', data.isAdmin);           
             navigate(`/users/${data.id}`)
         }
         catch(error) {
