@@ -40,9 +40,14 @@ function UserDietsComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="active"> My diets </NavLink>
+                    <div className="line"></div>
                     {is_admin &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
                     {is_admin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
                     {is_admin &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    <div className="line"></div>
+                    {is_admin &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
+                    {is_admin &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
+                    <div className="line"></div>
                 </div>
                 <div className="logout">
                     <NavLink to={`/logout`} className="inactive"> Log out </NavLink>

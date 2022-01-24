@@ -18,6 +18,8 @@ import AllUsersComponent from './components/AllUsersComponent';
 import AllBillingsComponent from './components/AllBillingsComponent';
 import AllDietsComponent from './components/AllDietsComponent';
 import AllDietsUpdateComponent from './components/AllDietsUpdateComponent';
+import FactTablesComponent from './componentsDW/FactTablesComponent';
+import ReportsComponent from './componentsDW/ReportsComponent';
 
 function App() {
   return (
@@ -40,6 +42,9 @@ function App() {
           <Route path='/users/:id/allbillings' element={<AllBillingsComponent />} />
           <Route path='/users/:id/alldiets' element={<AllDietsComponent />} />
           <Route path='/users/:id/alldiets/:dietId' element={<AllDietsUpdateComponent />} />
+          <Route path='/users/:id/alldiets/:dietId' element={<AllDietsUpdateComponent />} />
+          <Route path='/users/:id/facttables' element={<FactTablesComponent />} />
+          <Route path='/users/:id/reports' element={<ReportsComponent />} />
         </Routes>
       </Router>
     </div>
