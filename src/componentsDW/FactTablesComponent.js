@@ -13,7 +13,7 @@ function FactTablesComponent(props) {
     const [dietPlan, setDietPlan] = React.useState([]);
     const [weightEvolution, setWeightEvolution] = React.useState([]);
 
-    const[showBillings, setShowBillings] = React.useState(false);
+    const[showBillings, setShowBillings] = React.useState(true);
     const[showPlan, setShowPlan] = React.useState(false);
     const[showEvolution, setShowEvolution] = React.useState(false);
 
@@ -122,7 +122,6 @@ function FactTablesComponent(props) {
                             <th>User ID</th>
                             <th>Diet ID</th>
                             <th>Food ID</th>
-                            <th>Time ID</th>
                             <th>Calories</th>
                         </tr>
                         {
@@ -133,7 +132,6 @@ function FactTablesComponent(props) {
                                             <td>{plan.user_id}</td>
                                             <td>{plan.diet_id}</td>
                                             <td>{plan.food_id}</td>
-                                            <td>{plan.time_id}</td>
                                             <td>{plan.calories}</td>
                                         </tr>
                                     )

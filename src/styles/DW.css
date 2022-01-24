@@ -7,7 +7,7 @@
     display: inline-block;
     height: 40px;
     width: 30%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background-color:indianred;
     color: white;
     border-width: 2px;
@@ -21,7 +21,7 @@
     display: inline-block;
     height: 40px;
     width: 30%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background-color:indianred;
     color: white;
     border-width: 2px;
@@ -31,4 +31,28 @@
     border-right-color: darkslategrey;
     margin-right: 5%;
     margin-left: 5%;
+}
+
+.buttonCharts {
+    display: inline-block;
+    height: 30px;
+    width: 20%;
+    background-color:indianred;
+    color: white;
+    border-width: 2px;
+    border-top-color:lightpink;
+    border-left-color: lightpink;
+    border-bottom-color:darkslategrey;
+    border-right-color: darkslategrey;
+}
+
+.parag {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 14px;
 }
