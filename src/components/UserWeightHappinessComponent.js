@@ -32,17 +32,13 @@ function UserWeightHappinessComponent(props) {
         // const date_now = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
     
         const happinessObj = {
-            happiness_level: happiness,
-            userDto: {
-                id: Number(id)
-            } 
+            value: happiness,
+            userId: Number(id)
         }
 
         const weightObj = {
-            weight_number: Number(weight.value),
-            userDto: {
-                id: Number(id)
-            } 
+            value: Number(weight.value),
+            userId: Number(id)
         }
         
         let ok = false;

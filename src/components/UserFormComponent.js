@@ -36,17 +36,17 @@ function UserFormComponent(props) {
         if(first_name.value){
             user.first_name = first_name.value;
         }
-        if(city.value){
-            user.cityDto = {
-                "id": Number(city.value)
-            }
-        }
+        // if(city.value){
+        //     user.cityDto = {
+        //         "id": Number(city.value)
+        //     }
+        // }
 
         const userInfo = { "id": user.id
                          , "first_name": user.first_name
                          , "last_name": user.last_name
                          , "username": user.username
-                         , "cityDto": user.cityDto
+                         , "cityId": Number(city.value)
                          , "birth_date": user.birth_date
                          , "gender": user.gender };
 

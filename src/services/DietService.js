@@ -1,7 +1,7 @@
 import axios from 'axios';
 class DietService {
     getDiets(){
-        return axios.get('http:/localhost:8080/diets/');
+        return axios.get('http://localhost:8080/diets/');
     }
 
     getDiet(id){

@@ -5,14 +5,14 @@ import '../styles/Login.css';
 
 function LoginComponent () {
     const navigate = useNavigate();
-    const user_token = localStorage.getItem("user_token");
+    // const user_token = localStorage.getItem("user_token");
     const user_id = localStorage.getItem("user_id");
 
     React.useEffect(() => { 
-        if(user_token) {
+        if(user_id) {
             navigate(`/users/${user_id}`);
         }
-    }, [user_token, user_id, navigate]);
+    }, [user_id, navigate]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -21,16 +21,15 @@ function LoginComponent () {
         const userInfo = { username: username.value 
                          , password: password.value};
 
-        // var data;
-        try {
-            console.log("Suntem pe login");
-            const { data } = await AuthService.login(userInfo);
-            console.log(data);
-            localStorage.setItem('user_token', data);
-        }   
-        catch(error) {
-            alert("Error on login: " + error);
-        }
+        // try {
+        //     console.log("Suntem pe login");
+        //     const { data } = await AuthService.login(userInfo);
+        //     console.log(data);
+        //     // localStorage.setItem('user_token', data);
+        // }   
+        // catch(error) {
+        //     alert("Error on login: " + error);
+        // }
         
         try{
             console.log("Suntem pe getInfo");

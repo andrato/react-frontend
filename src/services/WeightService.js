@@ -3,11 +3,11 @@ import authHeader from './auth/AuthHeader';
 
 class WeightService {
     getWeight(id){
-        return axios.get(`http://localhost:8080/weights/user?id=${id}`, { headers: authHeader() });
+        return axios.get(`http://localhost:8080/weights/user?id=${id}`);
     }
 
     setWeight(weight){
-        return axios.post('http://localhost:8080/weights', weight, { headers: authHeader() });
+        return axios.post('http://localhost:8080/weights', weight);
     }
 }
 

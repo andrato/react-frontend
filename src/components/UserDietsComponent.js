@@ -11,7 +11,7 @@ function UserDietsComponent(props) {
 
     let { id } = useParams(); 
     const [diets, setDiets] = React.useState([]);
-    const user_token = localStorage.getItem("user_token");
+    // const user_token = localStorage.getItem("user_token");
     const user_id = localStorage.getItem("user_id");
     
     // React.useEffect(() => { 
@@ -19,18 +19,17 @@ function UserDietsComponent(props) {
     //         setDiets(response.data);
     //         console.log(user);
     //     })
-    //     //console.log("called " + id);
     // }, []);
 
     React.useEffect(() => { 
-        // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        if(user_token) {
+        if(user_id) {
             PaymentService.getDiets(user_id).then((response) => {
+                console.log(response.data);
                 setDiets(response.data);
             })
             .catch((error) => {console.log(error)});
         }            
-    }, [user_token, user_id]);
+    }, [user_id]);
 
     return (
         <div className="all">
@@ -50,7 +49,7 @@ function UserDietsComponent(props) {
                         {
                             diets.map(
                                 (diet, key) => {
-                                    return <DietItem id={diet.dietId} image={diet.image} name={diet.dietName} price={diet.amount}/>
+                                    return <DietItem id={diet.dietDto.id} image={diet.dietDto.image} name={diet.dietDto.name} price={diet.dietDto.price}/>
                                 }
                             )
                         }
