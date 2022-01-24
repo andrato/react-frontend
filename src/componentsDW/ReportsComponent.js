@@ -30,21 +30,23 @@ function ReportsComponent(props) {
         const fetchSales = async () => {
             const res = await ReportService.salesPerDay().then((response) => {return response.data}).catch((err) => alert(err));
             
+            if(res){
             setSales({
-                labels: res.map((sampling) => sampling.id_timp),
-                datasets: [{
-                    label: "Sales per day - total amount",
-                    data: res.map((sampling) => sampling.total_amount),
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1                    
-                },
-                {
-                    label: "Sales per day - fluctuation",
-                    data: res.map((sampling) => sampling.fluctuation),
-                    borderColor: 'rgb(247, 76, 116)',
-                    tension: 0.1                      
-                }]
-            });
+                    labels: res.map((sampling) => sampling.id_timp),
+                    datasets: [{
+                        label: "Sales per day - total amount",
+                        data: res.map((sampling) => sampling.total_amount),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1                    
+                    },
+                    {
+                        label: "Sales per day - fluctuation",
+                        data: res.map((sampling) => sampling.fluctuation),
+                        borderColor: 'rgb(247, 76, 116)',
+                        tension: 0.1                      
+                    }]
+                });
+            }
         }
         fetchSales();
     }, []);
@@ -53,15 +55,17 @@ function ReportsComponent(props) {
         const fetchUserWeight = async () => {
             const res = await ReportService.weightEvolution(4).then((response) => {return response.data}).catch((err) => alert(err));
         
-            setSales({
-                labels: res.map((sampling) => sampling.luna),
-                datasets: [{
-                    label: "Sales per day - total amount",
-                    data: res.map((sampling) => sampling.average),
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1                    
-                }]
-            });
+            if(res){
+                setSales({
+                    labels: res.map((sampling) => sampling.luna),
+                    datasets: [{
+                        label: "User weight",
+                        data: res.map((sampling) => sampling.average),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1                    
+                    }]
+                });
+            }
         }
         fetchUserWeight();
     }, []);
@@ -76,22 +80,119 @@ function ReportsComponent(props) {
             const value = 100 - data[0] - data[1] - data[2];
             data.push(value);
 
-            setCities({
-                labels: res.map((sampling) => sampling.city),
-                datasets: [{
-                    label: "Top cities",
-                    data: data,  
-                    backgroundColor: [
-                        'rgb(75, 192, 192)',
-                        'rgb(247, 76, 116)',
-                        'rgb(164, 223, 124)',
-                        'rgb(189, 189, 189)'
-                    ],
-                    hoverOffset: 4                
-                }]
-            });
+            if(res){
+                setCities({
+                    labels: res.map((sampling) => sampling.city),
+                    datasets: [{
+                        label: "Top cities",
+                        data: data,  
+                        backgroundColor: [
+                            'rgb(75, 192, 192)',
+                            'rgb(247, 76, 116)',
+                            'rgb(164, 223, 124)',
+                            'rgb(189, 189, 189)'
+                        ],
+                        hoverOffset: 4                
+                    }]
+                });
+            }
         }
         fetchCities();
+    }, []);
+
+    React.useEffect(() => { 
+        const fetchDiets = async () => {
+            const res = await ReportService.soldDiets().then((response) => {return response.data}).catch((err) => alert(err));
+            
+            console.log(res);
+            // console.log(res);
+            if(res){
+                setDiets({
+                    labels: res.map((sampling) => sampling.luna),
+                    datasets: [{
+                        label: "Best sold monthly diet",
+                        data: res.map((sampling) => sampling.diet_id),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)',
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                        ],
+                        borderWidth: 1                
+                    }]
+                });
+            }
+        }
+        fetchDiets();
+    }, []);
+
+    React.useEffect(() => { 
+        const fetchCart = async () => {
+            const res = await ReportService.cart().then((response) => {return response.data}).catch((err) => alert(err));
+            
+            console.log(res);
+            if(res){
+                setCart({
+                    labels: res.map((sampling) => sampling.luna),
+                    datasets: [{
+                        label: "Monthly diet cart percentage",
+                        data: res.map((sampling) => sampling.ratio_report),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)',
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                        ],
+                        borderWidth: 1             
+                    }]
+                });
+            }
+        }
+        fetchCart();
     }, []);
 
     function handleCharts(value){
@@ -142,7 +243,6 @@ function ReportsComponent(props) {
         }
     }
 
-    console.log(sales);
     return (
         <div className="all">
             <div className="one">
@@ -182,6 +282,16 @@ function ReportsComponent(props) {
                     <Chart type='line' data={weights} />
                     <p className="parag">Evoluția unui utilizator în timp - greutatea lunară</p>
                 </div>}
+                {showDiets && <div style={{width: "1000px", margin:'0px auto', marginTop:"40px"}}>
+                    <Chart type='bar' data={diets} options= {{scales: {y: {beginAtZero: true} } }}/>
+                    <p className="parag">Cea mai vândută dietă pentru slăbire lunar în ultimul an</p>
+                </div>}
+                {showCart && <div style={{width: "1000px", margin:'0px auto', marginTop:"40px"}}>
+                    <Chart type='bar' data={cart}/>
+                    <p className="parag">Procentul reprezentat de cumpărăturile făcute de utilizatori în fiecare luna, raportat la tot anul</p>
+                </div>}
+
+                
             </div>
         </div>
     )

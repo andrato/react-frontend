@@ -16,6 +16,14 @@ class ReportService {
     weightEvolution(id){
         return axios.get(`http://localhost:8085/reports/weightEvolution/${id}`);
     }
+
+    soldDiets(){
+        return axios.get('http://localhost:8085/reports/mostSoldDiet/');
+    }
+
+    cart(){
+        return axios.get('http://localhost:8085/reports/percentPerYear');
+    }
 }
 
 // export object of this class
