@@ -154,10 +154,10 @@ function FactTablesComponent(props) {
                                 (weight, key) => {
                                     return (
                                         <tr>
-                                            <td>{weight.user_id}</td>
+                                            <td>{weight.userId}</td>
                                             <td>{weight.diet_id}</td>
                                             <td>{weight.time_id}</td>
-                                            <td>{weight.weight}</td>
+                                            <td>{weight.weight_amount}</td>
                                         </tr>
                                     )
                                 }

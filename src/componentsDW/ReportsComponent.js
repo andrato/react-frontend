@@ -53,10 +53,10 @@ function ReportsComponent(props) {
     
     React.useEffect(() => { 
         const fetchUserWeight = async () => {
-            const res = await ReportService.weightEvolution(4).then((response) => {return response.data}).catch((err) => alert(err));
+            const res = await ReportService.weightEvolution(1).then((response) => {return response.data}).catch((err) => alert(err));
         
             if(res){
-                setSales({
+                setWeights({
                     labels: res.map((sampling) => sampling.luna),
                     datasets: [{
                         label: "User weight",
@@ -106,44 +106,19 @@ function ReportsComponent(props) {
             
             console.log(res);
             // console.log(res);
+
             if(res){
                 setDiets({
                     labels: res.map((sampling) => sampling.luna),
                     datasets: [{
-                        label: "Best sold monthly diet",
-                        data: res.map((sampling) => sampling.diet_id),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 205, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(201, 203, 207, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 205, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)',
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                        ],
-                        borderWidth: 1                
+                        label: "Sales evolution",
+                        data: res.map((sampling) => sampling.max_diet),
+                        borderColor: 'rgb(247, 76, 116)',
+                        tension: 0.1                    
                     }]
                 });
             }
+            
         }
         fetchDiets();
     }, []);
@@ -278,13 +253,13 @@ function ReportsComponent(props) {
                     <Chart type='pie' data={cities} />
                     <p className="parag">Top 3 orașe cu cele mai mari vânzări</p>
                 </div>}
-                {showWeigths && <div style={{width: "450px", margin:'0px auto', marginTop:"40px"}}>
+                {showWeigths && <div style={{width: "1000px", margin:'0px auto', marginTop:"40px"}}>
                     <Chart type='line' data={weights} />
                     <p className="parag">Evoluția unui utilizator în timp - greutatea lunară</p>
                 </div>}
                 {showDiets && <div style={{width: "1000px", margin:'0px auto', marginTop:"40px"}}>
-                    <Chart type='bar' data={diets} options= {{scales: {y: {beginAtZero: true} } }}/>
-                    <p className="parag">Cea mai vândută dietă pentru slăbire lunar în ultimul an</p>
+                    <Chart type='line' data={diets}/>
+                    <p className="parag">Evolutia vanzarilor dietei cu id=1 in ultimul an</p>
                 </div>}
                 {showCart && <div style={{width: "1000px", margin:'0px auto', marginTop:"40px"}}>
                     <Chart type='bar' data={cart}/>

@@ -14,7 +14,7 @@ class ReportService {
     }
 
     weightEvolution(id){
-        return axios.get(`http://localhost:8085/reports/weightEvolution/${id}`);
+        return axios.get(`http://localhost:8085/reports/weightEvolution/1`);
     }
 
     soldDiets(){

@@ -10,6 +10,7 @@ function AllBillingsComponent(props) {
 
     let { id } = useParams(); 
     const navigate = useNavigate();
+    const [isAdmin, setIsAdmin] = React.useState(false);
     const is_admin = localStorage.getItem("is_admin");
     const [billings, setBillings] = React.useState([]);
 
@@ -18,8 +19,13 @@ function AllBillingsComponent(props) {
             console.log(response.data);
             setBillings(response.data)
         })
+
+        if(is_admin){
+            setIsAdmin(true);
+        }
     }, []);
 
+    console.log("admin: " + is_admin);
     return (
         <div className="all">
             <div className="one">
@@ -28,12 +34,12 @@ function AllBillingsComponent(props) {
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
                     <div className="line"></div>
-                    {is_admin &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
-                    {is_admin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
-                    {is_admin &&<NavLink to={`/users/${id}/allbillings`} className="active"> All billings </NavLink>}
+                    {isAdmin &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {isAdmin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {isAdmin &&<NavLink to={`/users/${id}/allbillings`} className="active"> All billings </NavLink>}
                     <div className="line"></div>
-                    {is_admin &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
-                    {is_admin &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
+                    {isAdmin &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
+                    {isAdmin &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
                     <div className="line"></div>
                 </div>
                 <div className="logout">
