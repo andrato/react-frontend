@@ -3,7 +3,21 @@ import authHeader from './auth/AuthHeader';
 
 class UserService {
     getUsers() {
-        return axios.get(`http://localhost:8080/users/`);
+        // get all users
+        const is_admin = localStorage.getItem("is_admin");
+        if(is_admin === 'ALL'){
+            console.log("Aiciii");
+            return axios.get('http://localhost:8080/users/all');
+        }
+        else if (is_admin === 'EA') {
+            return axios.get('http://localhost:8080/users/ea');
+        }
+        else if (is_admin === 'WE') {
+            return axios.get('http://localhost:8080/users/we');
+        }
+        else {
+            alert ("You have no rights to access this resource!")
+        }
     }
 
     login(obj) {
@@ -12,16 +26,17 @@ class UserService {
 
     update(id, obj){
         console.log(obj);
-        return axios.put(`http://localhost:8080/users/${id}`, obj);
+        return axios.put(`http://localhost:8080/users/u/${id}`, obj);
     }
 
     getUserById(id){
-        return axios.get(`http://localhost:8080/users/${id}`);
+        console.log("sunt aici: " + id);
+        return axios.get(`http://localhost:8080/users/u/${id}`);
     }
 
-    getUsers() {
-        return axios.get(`http://localhost:8080/users/`);
-    }
+    // getUsers() {
+    //     return axios.get(`http://localhost:8080/users/`);
+    // }
 
     deleteUser(id) {
         return axios.delete(`http://localhost:8080/users/${id}`);

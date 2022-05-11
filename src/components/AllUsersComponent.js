@@ -14,8 +14,11 @@ function AllUsersComponent(props) {
 
     React.useEffect(() => { 
         UserService.getUsers().then((response) => {
-            console.log(response.data);
+            console.log("Sunt pe response: ");
+            console.log(response);
             setUsers(response.data)
+        }).catch ((err) => {
+            alert(err);
         })
     }, [is_admin]);
 
@@ -33,10 +36,10 @@ function AllUsersComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
-                    {is_admin!="false" && <div className="line"></div>}
-                    {is_admin &&<NavLink to={`/users/${id}/allusers`} className="active"> All users </NavLink>}
-                    {is_admin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
-                    {is_admin &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {is_admin!="NONE" && <div className="line"></div>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allusers`} className="active"> All users </NavLink>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
                     <div className="line"></div>
                 </div>
                 <div className="logout">
@@ -54,7 +57,7 @@ function AllUsersComponent(props) {
                         <th>Taget</th>
                         <th>Birth date</th>
                         <th>Gender</th>
-                        <th>City</th>
+                        <th>Country</th>
                         <th>Admin</th>
                         <th>Change Admin</th>
                     </tr>
@@ -70,8 +73,8 @@ function AllUsersComponent(props) {
                                         <td>{user.target}</td>
                                         <td>{user.birth_date}</td>
                                         <td>{user.gender}</td>
-                                        <td>{user.cityId}</td>
-                                        <td>{Number(user.isAdmin)}</td>
+                                        <td>{user.countryId}</td>
+                                        <td>{user.isAdmin}</td>
                                         <td><button onClick={() => handleAdmin(`${user.id}`)}>Change admin</button></td>
                                     </tr>
                                 )

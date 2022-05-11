@@ -7,14 +7,14 @@ import moment from 'moment';
 import { useNavigate } from 'react-router';
 
 function RegisterComponent () {
-    const [cities, setCities] = React.useState([]);
+    const [countries, setCountries] = React.useState([]);
     const [date, setDate] = React.useState(new Date());
     const [showCalendar, setShowCalendar] = React.useState(false);
     const navigate = useNavigate();
   
     React.useEffect(() => { 
-        LocationService.getCities().then((response) => {
-            setCities(response.data);
+        LocationService.getCountries().then((response) => {
+            setCountries(response.data);
         })
         .catch(error => {alert(error);})
     }, []);
@@ -26,7 +26,7 @@ function RegisterComponent () {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const { first_name, last_name, username, password, gender, city} = e.target.elements;
+        const { first_name, last_name, username, password, gender, country} = e.target.elements;
 
         const birth_date = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD');
         console.log(birth_date);
@@ -36,7 +36,7 @@ function RegisterComponent () {
                          , "username": username.value
                          , "password": password.value 
                          , "gender": (gender.value === 'female') ? 'F' : 'M'
-                         , "city": Number(city.value)
+                         , "country": Number(country.value)
                          , "birth_date": birth_date.toString()};
 
         AuthService.register(userInfo)
@@ -82,9 +82,9 @@ function RegisterComponent () {
                             <div className="div-inline">
                                 <select name="city" id="city"  >
                                 { 
-                                    cities.map(
-                                        (city, key) => {
-                                            return <option value={`${city.id}`}> {city.name}</option>
+                                    countries.map(
+                                        (country, key) => {
+                                            return <option value={`${country.id}`}> {country.name}</option>
                                         }
                                     )
                                 }

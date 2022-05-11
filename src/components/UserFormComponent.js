@@ -30,16 +30,13 @@ function UserFormComponent(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const {last_name, first_name, city, target} = e.target.elements;
+        const {last_name, first_name, target} = e.target.elements;
 
         if(last_name.value) {
             user.last_name = last_name.value;
         }
         if(first_name.value){
             user.first_name = first_name.value;
-        }
-        if(city.value){
-            user.cityId = city.value;
         }
         if(target.value){
             user.target = target.value;
@@ -49,7 +46,7 @@ function UserFormComponent(props) {
                          , "first_name": user.first_name
                          , "last_name": user.last_name
                          , "username": user.username
-                         , "cityId": user.cityId 
+                         , "countryId": user.countryId 
                          , "birth_date": user.birth_date
                          , "gender": user.gender 
                          , "target": user.target};
@@ -69,10 +66,10 @@ function UserFormComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
-                    {is_admin!="false" &&<div className="line"></div>}
-                    {is_admin!="false" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
-                    {is_admin!="false" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
-                    {is_admin!="false" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {is_admin!="NONE" &&<div className="line"></div>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
                     <div className="line"></div>
                 </div>
                 <div className="logout">
@@ -95,18 +92,6 @@ function UserFormComponent(props) {
                             <div>
                                 <label>Target: </label>
                                 <input className="update" id="target" placeholder={user.target}/>
-                            </div>
-                            <div className="div-inline">
-                                <label>City: </label>
-                                <select name="city" id="city" className="update" >
-                                { 
-                                    cities.map(
-                                        (city, key) => {
-                                            return <option value={`${city.id}`}> {city.name}</option>
-                                        }
-                                    )
-                                }
-                                </select>
                             </div>
                         </div>
                     }

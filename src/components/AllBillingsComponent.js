@@ -10,7 +10,7 @@ function AllBillingsComponent(props) {
 
     let { id } = useParams(); 
     const navigate = useNavigate();
-    const [isAdmin, setIsAdmin] = React.useState(false);
+    const [isAdmin, setIsAdmin] = React.useState('NONE');
     const is_admin = localStorage.getItem("is_admin");
     const [billings, setBillings] = React.useState([]);
 
@@ -19,13 +19,10 @@ function AllBillingsComponent(props) {
             console.log(response.data);
             setBillings(response.data)
         })
+        setIsAdmin(is_admin);
 
-        if(is_admin){
-            setIsAdmin(true);
-        }
     }, []);
 
-    console.log("admin: " + is_admin);
     return (
         <div className="all">
             <div className="one">
@@ -33,7 +30,7 @@ function AllBillingsComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
-                    {is_admin!="false" && <div className="line"></div>}
+                    {is_admin!="NONE" && <div className="line"></div>}
                     {isAdmin &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
                     {isAdmin &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
                     {isAdmin &&<NavLink to={`/users/${id}/allbillings`} className="active"> All billings </NavLink>}
