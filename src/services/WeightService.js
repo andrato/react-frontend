@@ -7,7 +7,8 @@ class WeightService {
     }
 
     setWeight(weight){
-        return axios.post('http://localhost:8080/weights', weight);
+        console.log(weight);
+        return axios.post('http://localhost:8080/weights/', weight);
     }
 }
 

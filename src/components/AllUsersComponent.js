@@ -22,8 +22,19 @@ function AllUsersComponent(props) {
         })
     }, [is_admin]);
 
+    function handleChange (userId, e) {
+        // const newUser = {
+        //     user_id: userId,
+        //     admin: e.target.value
+        // }
+        
+        const objIndex = users.findIndex((obj => obj.id == userId));
+        users[objIndex].isAdmin = e.target.value;
+    };
+
     async function handleAdmin(userId) {
-        await UserService.changeUserRights(userId).then((response) => {
+        const objIndex = users.findIndex((obj => obj.id == userId));
+        await UserService.changeUserRights(userId, users[objIndex].isAdmin).then((response) => {
             console.log(response.data);
             navigate(`/users/${id}/allusers/`);
         });
@@ -74,8 +85,15 @@ function AllUsersComponent(props) {
                                         <td>{user.birth_date}</td>
                                         <td>{user.gender}</td>
                                         <td>{user.countryId}</td>
-                                        <td>{user.isAdmin}</td>
-                                        <td><button onClick={() => handleAdmin(`${user.id}`)}>Change admin</button></td>
+                                        <td>
+                                            <select onChange={(value) => handleChange(`${user.id}`, value)}>        
+                                                <option value="NONE" selected={`${user.isAdmin}` == "NONE" ? true : false}>NONE</option>
+                                                <option value="EA" selected={`${user.isAdmin}` == "EA" ? true : false}>EA</option>
+                                                <option value="WE" selected={`${user.isAdmin}` == "WE" ? true : false}>WE</option>
+                                                <option value="ALL" selected={`${user.isAdmin}` == "ALL" ? true : false}>ALL</option>
+                                            </select>
+                                        </td>
+                                        <td><button type="submit" onClick={() => handleAdmin(`${user.id}`)}>Change admin</button></td>
                                     </tr>
                                 )
                             }

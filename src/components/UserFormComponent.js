@@ -30,7 +30,7 @@ function UserFormComponent(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const {last_name, first_name, target} = e.target.elements;
+        const {last_name, first_name, target, cnp, cardNumber} = e.target.elements;
 
         if(last_name.value) {
             user.last_name = last_name.value;
@@ -41,6 +41,12 @@ function UserFormComponent(props) {
         if(target.value){
             user.target = target.value;
         }
+        if(cnp.value){
+            user.cnp = cnp.value;
+        }
+        if(cardNumber.value){
+            user.cardNumber = cardNumber.value;
+        }
 
         const userInfo = { "id": user.id
                          , "first_name": user.first_name
@@ -49,7 +55,9 @@ function UserFormComponent(props) {
                          , "countryId": user.countryId 
                          , "birth_date": user.birth_date
                          , "gender": user.gender 
-                         , "target": user.target};
+                         , "target": user.target
+                         , "cnp": user.cnp
+                         , "cardNumber": user.cardNumber};
 
         console.log("este pe submit in update");
         console.log(userInfo);
@@ -92,6 +100,14 @@ function UserFormComponent(props) {
                             <div>
                                 <label>Target: </label>
                                 <input className="update" id="target" placeholder={user.target}/>
+                            </div>
+                            <div>
+                                <label>CNP: </label>
+                                <input className="update" id="cnp" placeholder={user.cnp} disabled={user.cnp ? 1 : 0}/>
+                            </div>
+                            <div>
+                                <label>Card number: </label>
+                                <input className="update" id="cardNumber" placeholder={user.cardNumber}/>
                             </div>
                         </div>
                     }

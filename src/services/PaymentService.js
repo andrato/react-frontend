@@ -3,7 +3,7 @@ import authHeader from './auth/AuthHeader';
 
 class PaymentService {
     addPayment(obj){
-        console.log(obj);
+        console.log(JSON.stringify(obj));
         return axios.post('http://localhost:8080/billings/', obj);
     }
 

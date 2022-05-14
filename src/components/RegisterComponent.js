@@ -26,22 +26,24 @@ function RegisterComponent () {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const { first_name, last_name, username, password, gender, country} = e.target.elements;
+        console.log("la inceput");
+        const { first_name, last_name, username, gender, country} = e.target.elements;
 
+        console.log(country.value);
         const birth_date = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD');
         console.log(birth_date);
 
         const userInfo = { "first_name": first_name.value 
                          , "last_name": last_name.value
                          , "username": username.value
-                         , "password": password.value 
                          , "gender": (gender.value === 'female') ? 'F' : 'M'
                          , "country": Number(country.value)
                          , "birth_date": birth_date.toString()};
 
+        console.log("inainte de auth " + JSON.stringify(userInfo));
         AuthService.register(userInfo)
             .then( (response) => { navigate('/login'); })
-            .catch( (error) => { alert("Error on register: " + error) }); 
+            .catch( (error) => { console.log(JSON.stringify(error)); alert("Error on register: " + error) }); 
     }
 
     return (
@@ -80,7 +82,7 @@ function RegisterComponent () {
                             </div>
 
                             <div className="div-inline">
-                                <select name="city" id="city"  >
+                                <select name="country" id="country"  >
                                 { 
                                     countries.map(
                                         (country, key) => {

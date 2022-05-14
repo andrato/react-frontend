@@ -42,8 +42,19 @@ class UserService {
         return axios.delete(`http://localhost:8080/users/${id}`);
     }
 
-    changeUserRights(id) {
-        return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}`)
+    changeUserRights(id, role) {
+        console.log(id + " " + role);
+        const is_admin = localStorage.getItem("is_admin");
+        if(is_admin === 'ALL') {
+            return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}&role=${role}`)
+        } else if(is_admin === 'EA' && (role === 'NONE' || role === 'EA')) {
+            return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}&role=${role}`)
+        } else if(is_admin === 'WE' && (role === 'NONE' || role === 'WE')) {
+            return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}&role=${role}`)
+        }
+        else {
+            alert("You are allowed only to select: " + "`NONE` or " +  (is_admin == 'EA' ? "`EA`" : "`WE`"));
+        }
     }
 }
 

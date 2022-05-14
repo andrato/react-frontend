@@ -22,6 +22,7 @@ class AuthService {
   }
 
   register(userInfo){
+    console.log("userInfo register");
     console.log(userInfo); 
     return axios.post('http://localhost:8080/registration/', userInfo);
   }
