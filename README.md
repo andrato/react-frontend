@@ -1,3 +1,15 @@
+# App presentation
+Frontend project in React.
+
+Branches:
+- master: was used for a project with microservices
+- datawarehouse: was used for a Data Warehouse project 
+
+Backend: https://github.com/joli94/data-warehousing-diets, https://github.com/joli94/data-warehousing-diets-dw
+
+# App photos
+![](images/dw.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
