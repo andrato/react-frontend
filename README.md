@@ -1,4 +1,6 @@
 # App presentation
+Diet Application - buy diets once you are registered.
+
 Frontend project in React.
 
 Branches:
