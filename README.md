@@ -4,8 +4,8 @@ Diet Application - buy diets once you are registered.
 Frontend project in React.
 
 Branches:
-- master: was used for a project with microservices
-- datawarehouse: was used for a Data Warehouse project 
+- master/datawarehouse: was used for a Data Warehouse project 
+- microservices: was used for a project with microservices;
 
 Backend: https://github.com/joli94/data-warehousing-diets, https://github.com/joli94/data-warehousing-diets-dw
 
