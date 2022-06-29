@@ -37,7 +37,7 @@ function AllUsersComponent(props) {
         await UserService.changeUserRights(userId, users[objIndex].isAdmin).then((response) => {
             console.log(response.data);
             navigate(`/users/${id}/allusers/`);
-        });
+        }).catch(err => {console.log("error: " + JSON.stringify(err))});
     }
 
     return (
@@ -50,7 +50,7 @@ function AllUsersComponent(props) {
                     {is_admin!="NONE" && <div className="line"></div>}
                     {is_admin!="NONE" &&<NavLink to={`/users/${id}/allusers`} className="active"> All users </NavLink>}
                     {is_admin!="NONE" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
-                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {/* {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>} */}
                     <div className="line"></div>
                 </div>
                 <div className="logout">

@@ -45,6 +45,8 @@ class UserService {
     changeUserRights(id, role) {
         console.log(id + " " + role);
         const is_admin = localStorage.getItem("is_admin");
+        
+        console.log(`http://localhost:8080/users/changeAdmin?id=${id}&role=${role}`)
         if(is_admin === 'ALL') {
             return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}&role=${role}`)
         } else if(is_admin === 'EA' && (role === 'NONE' || role === 'EA')) {

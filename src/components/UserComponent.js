@@ -46,7 +46,7 @@ function UserComponent(props) {
                     {is_admin!="NONE" && <div className="line"></div>}
                     {is_admin!="NONE" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
                     {is_admin!="NONE" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
-                    {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {/* {is_admin!="NONE" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>} */}
                     <div className="line"></div>
                 </div>
                 <div className="logout">
