@@ -13,6 +13,8 @@ function UserFormComponent(props) {
     const [user, setUser] = React.useState('');
     const [cities, setCities] = React.useState([]);    
     const navigate = useNavigate();
+    const is_admin = localStorage.getItem("is_admin");
+
     
     React.useEffect(() => { 
         UserService.getUserById(id).then((response) => {
@@ -28,7 +30,7 @@ function UserFormComponent(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const {last_name, first_name, city} = e.target.elements;
+        const {last_name, first_name, city, target} = e.target.elements;
 
         if(last_name.value) {
             user.last_name = last_name.value;
@@ -37,18 +39,20 @@ function UserFormComponent(props) {
             user.first_name = first_name.value;
         }
         if(city.value){
-            user.cityDto = {
-                "id": Number(city.value)
-            }
+            user.cityId = city.value;
+        }
+        if(target.value){
+            user.target = target.value;
         }
 
         const userInfo = { "id": user.id
                          , "first_name": user.first_name
                          , "last_name": user.last_name
                          , "username": user.username
-                         , "cityDto": user.cityDto
+                         , "cityId": user.cityId 
                          , "birth_date": user.birth_date
-                         , "gender": user.gender };
+                         , "gender": user.gender 
+                         , "target": user.target};
 
         console.log("este pe submit in update");
         console.log(userInfo);
@@ -65,6 +69,14 @@ function UserFormComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
+                    {is_admin!="false" &&<div className="line"></div>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {is_admin!="false" && <div className="line"></div>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
+                    <div className="line"></div>
                 </div>
                 <div className="logout">
                     <NavLink to={`/logout`} className="inactive"> Log out </NavLink>
@@ -82,6 +94,10 @@ function UserFormComponent(props) {
                             <div>
                                 <label>Last name: </label>
                                 <input className="update" id="last_name" placeholder={user.last_name}/>
+                            </div>
+                            <div>
+                                <label>Target: </label>
+                                <input className="update" id="target" placeholder={user.target}/>
                             </div>
                             <div className="div-inline">
                                 <label>City: </label>

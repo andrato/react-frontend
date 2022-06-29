@@ -14,6 +14,8 @@ function UserWeightHappinessComponent(props) {
 
     const [happiness, setHappiness] = React.useState('');
     const navigate = useNavigate();
+    const is_admin = localStorage.getItem("is_admin");
+
     
     // React.useEffect(() => { 
     //     UserService.getUserById(id).then((response) => {
@@ -32,17 +34,13 @@ function UserWeightHappinessComponent(props) {
         // const date_now = moment(date.toLocaleDateString(), 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss');
     
         const happinessObj = {
-            happiness_level: happiness,
-            userDto: {
-                id: Number(id)
-            } 
+            value: happiness,
+            userId: Number(id)
         }
 
         const weightObj = {
-            weight_number: Number(weight.value),
-            userDto: {
-                id: Number(id)
-            } 
+            value: Number(weight.value),
+            userId: Number(id)
         }
         
         let ok = false;
@@ -78,6 +76,14 @@ function UserWeightHappinessComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="active"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="inactive"> My diets </NavLink>
+                    {is_admin!="false" && <div className="line"></div>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {is_admin!="false" && <div className="line"></div>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
+                    <div className="line"></div>
                 </div>
                 <div className="logout">
                     <NavLink to={`/logout`} className="inactive"> Log out </NavLink>

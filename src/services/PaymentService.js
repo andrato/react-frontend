@@ -4,12 +4,12 @@ import authHeader from './auth/AuthHeader';
 class PaymentService {
     addPayment(obj){
         console.log(obj);
-        return axios.post('http://157.245.24.31:8080/payments/', obj, { headers: authHeader() });
+        return axios.post('http://localhost:8080/billings/', obj);
     }
 
     /* the payments details which contain the diets bought by a specific user */
     getDiets(id){
-        return axios.get(`http://157.245.24.31:8080/payments/user?id=${id}`, { headers: authHeader() });
+        return axios.get(`http://localhost:8080/billings/user?id=${id}`);
     }
 }
 

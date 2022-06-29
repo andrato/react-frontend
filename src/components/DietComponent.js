@@ -17,7 +17,7 @@ function DietComponent (props){
     const [foods, setFoods] = React.useState([]);
     const [diets, setDiets] = React.useState([]);
     const [showButton, setShowButton] = React.useState(true);
-    const user_token = localStorage.getItem("user_token");
+    // const user_token = localStorage.getItem("user_token");
     const user_id = localStorage.getItem("user_id");
 
     const navigate = useNavigate();
@@ -37,16 +37,16 @@ function DietComponent (props){
 
     React.useEffect(() => { 
         // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        if(user_token) {
+        if(user_id) {
             PaymentService.getDiets(user_id).then((response) => {
                 setDiets(response.data);
             })
             .catch((error) => {console.log(error)});
         }
-    }, [user_token, user_id]);
+    }, [user_id]);
 
     React.useEffect(() => {
-        if(user_token) {
+        if(user_id) {
             isDietBought();
         }
       });
@@ -55,7 +55,7 @@ function DietComponent (props){
     function isDietBought(){
         console.log(diets);
         for(let x of diets){
-            if(x.dietId === Number(id)) {
+            if(x.dietDto.id === Number(id)) {
                 setShowButton(false);
                 break;
             }
@@ -64,25 +64,25 @@ function DietComponent (props){
 
     function handleBuy() { 
         console.log("HandleBuy ");
-        if(user_token) {
+        if(user_id) {
             console.log(id);
-            // const obj = {
-            //     "userDto":{
-            //         "id": 1
-            //     },
-            //     "dietDto": {
-            //         "id": id
-            //     },
-            //     "paymentDto": {
-            //         "amount": price
-            //     }
-            // };
             const obj = {
-                "dietName": diet.name,
-                "userId": Number(user_id),
-                "dietId": Number(id),
-                "amount": Number(diet.price)
+                "userDto":{
+                    "id": 1
+                },
+                "dietDto": {
+                    "id": id
+                },
+                "paymentDto": {
+                    "amount": diet.price
+                }
             };
+            // const obj = {
+            //     "dietName": diet.name,
+            //     "userId": Number(user_id),
+            //     "dietId": Number(id),
+            //     "amount": Number(diet.price)
+            // };
 
             // to do: if order succedden, then the page should be reloaded
             // and the user should be able to access the foods

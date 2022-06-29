@@ -11,27 +11,29 @@ function UserDietsComponent(props) {
 
     let { id } = useParams(); 
     const [diets, setDiets] = React.useState([]);
-    const user_token = localStorage.getItem("user_token");
+    // const user_token = localStorage.getItem("user_token");
+    const [admin, setAdmin] = React.useState(false);
     const user_id = localStorage.getItem("user_id");
-    
-    // React.useEffect(() => { 
-    //     UserService.getUserById(id).then((response) => {
-    //         setDiets(response.data);
-    //         console.log(user);
-    //     })
-    //     //console.log("called " + id);
-    // }, []);
+    const is_admin = localStorage.getItem("is_admin");
 
     React.useEffect(() => { 
-        // ToDo: replace 1 with the current logged in user, if it exists, if not, then empty
-        if(user_token) {
+        if(user_id) {
             PaymentService.getDiets(user_id).then((response) => {
+                console.log(response.data);
                 setDiets(response.data);
             })
             .catch((error) => {console.log(error)});
         }            
-    }, [user_token, user_id]);
+    }, [user_id]);
 
+    React.useEffect(() => { 
+        if(typeof is_admin !== 'undefined' && is_admin !== null) {
+            console.log("useEffect: isAdmin " + is_admin)
+            setAdmin(true);
+        }            
+    }, []);
+
+    console.log("admin: " + is_admin);
     return (
         <div className="all">
             <div className="one">
@@ -39,6 +41,14 @@ function UserDietsComponent(props) {
                     <NavLink to={`/users/${id}`} className="inactive"> Account Info </NavLink>
                     <NavLink to={`/users/${id}/updates`} className="inactive"> Updates </NavLink>
                     <NavLink to={`/users/${id}/diets`} className="active"> My diets </NavLink>
+                    {is_admin!="false" && <div className="line"></div>}
+                    {is_admin!="false" &&<NavLink to={`/users/${id}/allusers`} className="inactive"> All users </NavLink>}
+                    {is_admin!="false"  &&<NavLink to={`/users/${id}/alldiets`} className="inactive"> All diets </NavLink>}
+                    {is_admin!="false"  &&<NavLink to={`/users/${id}/allbillings`} className="inactive"> All billings </NavLink>}
+                    {is_admin!="false"  && <div className="line"></div>}
+                    {is_admin!="false"  &&<NavLink to={`/users/${id}/facttables`} className="inactive"> Fact Tables </NavLink>}
+                    {is_admin!="false"  &&<NavLink to={`/users/${id}/reports`} className="inactive"> Reports </NavLink>}
+                    <div className="line"></div>
                 </div>
                 <div className="logout">
                     <NavLink to={`/logout`} className="inactive"> Log out </NavLink>
@@ -50,7 +60,7 @@ function UserDietsComponent(props) {
                         {
                             diets.map(
                                 (diet, key) => {
-                                    return <DietItem id={diet.dietId} image={diet.image} name={diet.dietName} price={diet.amount}/>
+                                    return <DietItem id={diet.dietDto.id} image={diet.dietDto.image} name={diet.dietDto.name} price={diet.dietDto.price}/>
                                 }
                             )
                         }

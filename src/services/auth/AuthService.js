@@ -3,7 +3,7 @@ import authHeader from './AuthHeader';
 
 class AuthService {
   login(obj) {
-    return axios.post(`http://157.245.24.31:8080/auth/login`, obj);
+    return axios.post(`http://localhost:8080/auth/login`, obj);
   }
 
   getUserByUsername(username) {
@@ -12,21 +12,18 @@ class AuthService {
     // const access_token = { "Authorization":  token2 };
     // console.log(access_token);
     // console.log(authHeader());
-    return axios.get(`http://157.245.24.31:8080/users/username?request=${username}`, { headers: authHeader()});
+    return axios.get(`http://localhost:8080/users/username?request=${username}`);
   }
 
   logout() {
-    // user.remove();
-    localStorage.removeItem("user_token");
+    // localStorage.removeItem("user_token");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("is_admin");
   }
 
   register(userInfo){
     console.log(userInfo); 
-    return axios.post('http://157.245.24.31:8080/registration/', userInfo, { headers: 
-          // 'content-type': 'application/json',
-          authHeader()
-        });
+    return axios.post('http://localhost:8080/registration/', userInfo);
   }
 
   // getCurrentUserToken() {

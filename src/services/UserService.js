@@ -2,16 +2,33 @@ import axios from 'axios';
 import authHeader from './auth/AuthHeader';
 
 class UserService {
-    getUserById(id){
-        return axios.get(`http://157.245.24.31:8080/users/${id}`, { headers: authHeader() });
+    getUsers() {
+        return axios.get(`http://localhost:8080/users/`);
     }
 
     login(obj) {
-        return axios.post(`http://157.245.24.31:8080/auth/login`, obj, { headers: authHeader() });
+        return axios.post(`http://localhost:8080/auth/login`, obj);
     }
 
     update(id, obj){
-        return axios.put(`http://157.245.24.31:8080/users/${id}`, obj, { headers: authHeader() });
+        console.log(obj);
+        return axios.put(`http://localhost:8080/users/${id}`, obj);
+    }
+
+    getUserById(id){
+        return axios.get(`http://localhost:8080/users/${id}`);
+    }
+
+    getUsers() {
+        return axios.get(`http://localhost:8080/users/`);
+    }
+
+    deleteUser(id) {
+        return axios.delete(`http://localhost:8080/users/${id}`);
+    }
+
+    changeUserRights(id) {
+        return axios.put(`http://localhost:8080/users/changeAdmin?id=${id}`)
     }
 }
 
